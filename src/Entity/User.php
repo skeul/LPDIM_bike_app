@@ -66,11 +66,17 @@ class User implements UserInterface
      */
     private $userAmis;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=Sortie::class, mappedBy="users")
+     */
+    private $sorties;
+
     public function __construct()
     {
         $this->velo = new ArrayCollection();
         $this->amis = new ArrayCollection();
         $this->userAmis = new ArrayCollection();
+        $this->sorties = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -261,6 +267,33 @@ class User implements UserInterface
     {
         if ($this->userAmis->removeElement($userAmi)) {
             $userAmi->removeAmi($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Sortie[]
+     */
+    public function getSorties(): Collection
+    {
+        return $this->sorties;
+    }
+
+    public function addSorty(Sortie $sorty): self
+    {
+        if (!$this->sorties->contains($sorty)) {
+            $this->sorties[] = $sorty;
+            $sorty->addUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeSorty(Sortie $sorty): self
+    {
+        if ($this->sorties->removeElement($sorty)) {
+            $sorty->removeUser($this);
         }
 
         return $this;

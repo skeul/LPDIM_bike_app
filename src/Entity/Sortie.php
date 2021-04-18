@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SortieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -26,6 +28,22 @@ class Sortie
      * @ORM\Column(type="integer")
      */
     private $status;
+
+    /**
+     * @ORM\ManyToOne(targetEntity=Parcours::class, inversedBy="sorties")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $parcours;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="sorties")
+     */
+    private $users;
+
+    public function __construct()
+    {
+        $this->users = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -52,6 +70,42 @@ class Sortie
     public function setStatus(int $status): self
     {
         $this->status = $status;
+
+        return $this;
+    }
+
+    public function getParcours(): ?Parcours
+    {
+        return $this->parcours;
+    }
+
+    public function setParcours(?Parcours $parcours): self
+    {
+        $this->parcours = $parcours;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|User[]
+     */
+    public function getUsers(): Collection
+    {
+        return $this->users;
+    }
+
+    public function addUser(User $user): self
+    {
+        if (!$this->users->contains($user)) {
+            $this->users[] = $user;
+        }
+
+        return $this;
+    }
+
+    public function removeUser(User $user): self
+    {
+        $this->users->removeElement($user);
 
         return $this;
     }

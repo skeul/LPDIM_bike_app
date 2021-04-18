@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SommetRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -31,6 +33,16 @@ class Sommet
      * @ORM\Column(type="string", length=255)
      */
     private $lieu;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=Parcours::class, mappedBy="sommet")
+     */
+    private $parcours;
+
+    public function __construct()
+    {
+        $this->parcours = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -69,6 +81,33 @@ class Sommet
     public function setLieu(string $lieu): self
     {
         $this->lieu = $lieu;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Parcours[]
+     */
+    public function getParcours(): Collection
+    {
+        return $this->parcours;
+    }
+
+    public function addParcour(Parcours $parcour): self
+    {
+        if (!$this->parcours->contains($parcour)) {
+            $this->parcours[] = $parcour;
+            $parcour->addSommet($this);
+        }
+
+        return $this;
+    }
+
+    public function removeParcour(Parcours $parcour): self
+    {
+        if ($this->parcours->removeElement($parcour)) {
+            $parcour->removeSommet($this);
+        }
 
         return $this;
     }
