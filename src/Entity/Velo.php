@@ -13,7 +13,9 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
  * @InheritanceType("JOINED")
  * @DiscriminatorColumn(name="type", type="string")
  * @DiscriminatorMap({
- * "elec" = "Electric"})
+ * "elec" = "Electric",
+ * "vtt" = "VTT",
+ * })
  */
 abstract class Velo
 {
