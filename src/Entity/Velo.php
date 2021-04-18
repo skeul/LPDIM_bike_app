@@ -2,13 +2,20 @@
 
 namespace App\Entity;
 
-use App\Repository\VeloRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\VeloRepository;
+use Doctrine\ORM\Mapping\InheritanceType;
+use Doctrine\ORM\Mapping\DiscriminatorMap;
+use Doctrine\ORM\Mapping\DiscriminatorColumn;
 
 /**
  * @ORM\Entity(repositoryClass=VeloRepository::class)
+ * @InheritanceType("JOINED")
+ * @DiscriminatorColumn(name="type", type="string")
+ * @DiscriminatorMap({
+ * "elec" = "Electric"})
  */
-class Velo
+abstract class Velo
 {
     /**
      * @ORM\Id
