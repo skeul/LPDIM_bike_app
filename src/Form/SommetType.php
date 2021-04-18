@@ -14,9 +14,7 @@ class SommetType extends AbstractType
         $builder
             ->add('nom')
             ->add('altitude')
-            ->add('lieu')
-            ->add('parcours')
-        ;
+            ->add('lieu');
     }
 
     public function configureOptions(OptionsResolver $resolver)
