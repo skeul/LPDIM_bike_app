@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Electric{% endblock %}
+
+{% block body %}
+    <h1>Create new Electric</h1>
+
+    {{ include('electric/_form.html.twig') }}
+
+    <a href="{{ path('electric_index') }}">back to list</a>
+{% endblock %}

@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Sommet;
-use App\Form\SommetType;
+use App\Form\Admin\SommetAdminType;
 use App\Repository\SommetRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class SommetCrudController extends AbstractController
     public function new(Request $request): Response
     {
         $sommet = new Sommet();
-        $form = $this->createForm(SommetType::class, $sommet);
+        $form = $this->createForm(SommetAdminType::class, $sommet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class SommetCrudController extends AbstractController
     #[Route('/{id}/edit', name: 'sommet_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sommet $sommet): Response
     {
-        $form = $this->createForm(SommetType::class, $sommet);
+        $form = $this->createForm(SommetAdminType::class, $sommet);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

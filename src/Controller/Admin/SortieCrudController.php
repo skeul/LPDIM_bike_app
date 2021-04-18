@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Sortie;
-use App\Form\SortieType;
+use App\Form\Admin\SortieAdminType;
 use App\Repository\SortieRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class SortieCrudController extends AbstractController
     public function new(Request $request): Response
     {
         $sortie = new Sortie();
-        $form = $this->createForm(SortieType::class, $sortie);
+        $form = $this->createForm(SortieAdminType::class, $sortie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class SortieCrudController extends AbstractController
     #[Route('/{id}/edit', name: 'sortie_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Sortie $sortie): Response
     {
-        $form = $this->createForm(SortieType::class, $sortie);
+        $form = $this->createForm(SortieAdminType::class, $sortie);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

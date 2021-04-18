@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Electric{% endblock %}
+
+{% block body %}
+    <h1>Create new Electric</h1>
+
+    {{ include('admin/electric_crud/_form.html.twig') }}
+
+    <a href="{{ path('electric_crud_index') }}">back to list</a>
+{% endblock %}

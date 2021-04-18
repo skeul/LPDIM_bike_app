@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VTT{% endblock %}
+
+{% block body %}
+    <h1>VTT</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ vtt.id }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ vtt.marque }}</td>
+            </tr>
+            <tr>
+                <th>Modele</th>
+                <td>{{ vtt.modele }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ vtt.poids }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ vtt.image }}</td>
+            </tr>
+            <tr>
+                <th>Suspension_avant</th>
+                <td>{{ vtt.suspensionAvant }}</td>
+            </tr>
+            <tr>
+                <th>Suspension_arriere</th>
+                <td>{{ vtt.suspensionArriere }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('vtt_index') }}">back to list</a>
+
+    <a href="{{ path('vtt_edit', {'id': vtt.id}) }}">edit</a>
+
+    {{ include('vtt/_delete_form.html.twig') }}
+{% endblock %}

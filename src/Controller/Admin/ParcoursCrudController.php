@@ -3,7 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Parcours;
-use App\Form\ParcoursType;
+use App\Form\Admin\ParcoursAdminType;
 use App\Repository\ParcoursRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -25,7 +25,7 @@ class ParcoursCrudController extends AbstractController
     public function new(Request $request): Response
     {
         $parcour = new Parcours();
-        $form = $this->createForm(ParcoursType::class, $parcour);
+        $form = $this->createForm(ParcoursAdminType::class, $parcour);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -53,7 +53,7 @@ class ParcoursCrudController extends AbstractController
     #[Route('/{id}/edit', name: 'parcours_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Parcours $parcour): Response
     {
-        $form = $this->createForm(ParcoursType::class, $parcour);
+        $form = $this->createForm(ParcoursAdminType::class, $parcour);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

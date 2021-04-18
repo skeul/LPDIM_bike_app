@@ -4,10 +4,10 @@ namespace App\Controller\Admin;
 
 use App\Entity\VTT;
 use App\Entity\Velo;
-use App\Form\VTTType;
-use App\Form\VeloType;
+use App\Form\Admin\VTTAdminType;
+use App\Form\Admin\VeloAdminType;
 use App\Entity\Electric;
-use App\Form\ElectricType;
+use App\Form\Admin\ElectricAdminType;
 use App\Repository\VeloRepository;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,11 +34,11 @@ class VeloCrudController extends AbstractController
         switch ($type) {
             case 'vtt':
                 $velo = new VTT();
-                $form = $this->createForm(VTTType::class, $velo);
+                $form = $this->createForm(VTTAdminType::class, $velo);
                 break;
             case 'elec':
                 $velo = new Electric();
-                $form = $this->createForm(ElectricType::class, $velo);
+                $form = $this->createForm(ElectricAdminType::class, $velo);
                 break;
 
             default:
@@ -74,7 +74,12 @@ class VeloCrudController extends AbstractController
     #[Route('/{id}/edit', name: 'velo_crud_edit', methods: ['GET', 'POST'])]
     public function edit(Request $request, Velo $velo): Response
     {
-        $form = $this->createForm(VeloType::class, $velo);
+        if ($velo instanceof VTT) {
+            $velo = new VTT();
+            dd($velo);
+            $form = $this->createForm(VTTAdminType::class, $velo);
+        }
+
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

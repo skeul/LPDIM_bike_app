@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}VTT index{% endblock %}
+
+{% block body %}
+    <h1>VTT index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Marque</th>
+                <th>Modele</th>
+                <th>Poids</th>
+                <th>Image</th>
+                <th>Suspension_avant</th>
+                <th>Suspension_arriere</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for vtt in vtts %}
+            <tr>
+                <td>{{ vtt.id }}</td>
+                <td>{{ vtt.marque }}</td>
+                <td>{{ vtt.modele }}</td>
+                <td>{{ vtt.poids }}</td>
+                <td>{{ vtt.image }}</td>
+                <td>{{ vtt.suspensionAvant }}</td>
+                <td>{{ vtt.suspensionArriere }}</td>
+                <td>
+                    <a href="{{ path('vtt_show', {'id': vtt.id}) }}">show</a>
+                    <a href="{{ path('vtt_edit', {'id': vtt.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="8">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vtt_new') }}">Create new</a>
+{% endblock %}

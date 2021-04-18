@@ -16,8 +16,8 @@ class VeloType extends AbstractType
             ->add('modele')
             ->add('poids')
             ->add('image')
-            ->add('type')
-            ->add('user');
+            ->add('user')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

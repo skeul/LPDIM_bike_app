@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Sommet{% endblock %}
+
+{% block body %}
+    <h1>Edit Sommet</h1>
+
+    {{ include('sommet/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('sommet_index') }}">back to list</a>
+
+    {{ include('sommet/_delete_form.html.twig') }}
+{% endblock %}

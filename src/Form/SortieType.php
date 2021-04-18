@@ -12,11 +12,12 @@ class SortieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nom')
             ->add('date_sortie')
             ->add('status')
+            ->add('nom')
             ->add('parcours')
-            ->add('users');
+            ->add('users')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)

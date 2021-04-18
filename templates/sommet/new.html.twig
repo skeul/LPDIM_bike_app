@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Sommet{% endblock %}
+
+{% block body %}
+    <h1>Create new Sommet</h1>
+
+    {{ include('sommet/_form.html.twig') }}
+
+    <a href="{{ path('sommet_index') }}">back to list</a>
+{% endblock %}

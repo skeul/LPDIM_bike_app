@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Electric{% endblock %}
+
+{% block body %}
+    <h1>Electric</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ electric.id }}</td>
+            </tr>
+            <tr>
+                <th>Marque</th>
+                <td>{{ electric.marque }}</td>
+            </tr>
+            <tr>
+                <th>Modele</th>
+                <td>{{ electric.modele }}</td>
+            </tr>
+            <tr>
+                <th>Poids</th>
+                <td>{{ electric.poids }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ electric.image }}</td>
+            </tr>
+            <tr>
+                <th>Puissance</th>
+                <td>{{ electric.puissance }}</td>
+            </tr>
+            <tr>
+                <th>Autonomie</th>
+                <td>{{ electric.autonomie }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('electric_crud_index') }}">back to list</a>
+
+    <a href="{{ path('electric_crud_edit', {'id': electric.id}) }}">edit</a>
+
+    {{ include('admin/electric_crud/_delete_form.html.twig') }}
+{% endblock %}
