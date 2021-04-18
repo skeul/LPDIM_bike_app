@@ -12,10 +12,10 @@ class ParcoursType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
+            ->add('name')
             ->add('distance')
             ->add('difficulte')
-            ->add('sommet')
-        ;
+            ->add('sommet');
     }
 
     public function configureOptions(OptionsResolver $resolver)

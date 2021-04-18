@@ -39,6 +39,11 @@ class Parcours
      */
     private $sommet;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $name;
+
     public function __construct()
     {
         $this->sorties = new ArrayCollection();
@@ -126,5 +131,22 @@ class Parcours
         $this->sommet->removeElement($sommet);
 
         return $this;
+    }
+
+    public function getName(): ?string
+    {
+        return $this->name;
+    }
+
+    public function setName(string $name): self
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function __toString(): string
+    {
+        return $this->name . " (" . $this->distance . ")";
     }
 }

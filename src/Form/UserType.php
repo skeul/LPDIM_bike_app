@@ -17,11 +17,10 @@ class UserType extends AbstractType
             ->add('password')
             ->add('nom')
             ->add('prenom')
-            ->add('email')
-            ->add('amis')
-            ->add('userAmis')
-            ->add('sorties')
-        ;
+            ->add('email');
+        // ->add('amis')
+        // ->add('userAmis')
+        // ->add('sorties');
     }
 
     public function configureOptions(OptionsResolver $resolver)
