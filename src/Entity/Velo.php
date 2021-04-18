@@ -15,6 +15,7 @@ use Doctrine\ORM\Mapping\DiscriminatorColumn;
  * @DiscriminatorMap({
  * "elec" = "Electric",
  * "vtt" = "VTT",
+ * "route" = "Route",
  * })
  */
 abstract class Velo
