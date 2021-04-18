@@ -51,8 +51,14 @@ class User implements UserInterface
      */
     private $email;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Velo::class, mappedBy="user")
+     */
+    private $velo;
+
     public function __construct()
     {
+        $this->velo = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -163,6 +169,36 @@ class User implements UserInterface
     public function setEmail(string $email): self
     {
         $this->email = $email;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Velo[]
+     */
+    public function getVelo(): Collection
+    {
+        return $this->velo;
+    }
+
+    public function addVelo(Velo $velo): self
+    {
+        if (!$this->velo->contains($velo)) {
+            $this->velo[] = $velo;
+            $velo->setUser($this);
+        }
+
+        return $this;
+    }
+
+    public function removeVelo(Velo $velo): self
+    {
+        if ($this->velo->removeElement($velo)) {
+            // set the owning side to null (unless already changed)
+            if ($velo->getUser() === $this) {
+                $velo->setUser(null);
+            }
+        }
 
         return $this;
     }

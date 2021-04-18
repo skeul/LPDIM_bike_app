@@ -46,6 +46,11 @@ abstract class Velo
      */
     private $image;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="velo")
+     */
+    private $user;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -95,6 +100,18 @@ abstract class Velo
     public function setImage(?string $image): self
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
 
         return $this;
     }
