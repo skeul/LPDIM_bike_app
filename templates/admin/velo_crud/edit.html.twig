@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Velo{% endblock %}
+
+{% block body %}
+    <h1>Edit Velo</h1>
+
+    {{ include('admin/velo_crud/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('velo_crud_index') }}">back to list</a>
+
+    {{ include('admin/velo_crud/_delete_form.html.twig') }}
+{% endblock %}
