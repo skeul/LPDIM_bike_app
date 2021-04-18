@@ -2,13 +2,17 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\VTT;
 use App\Entity\Velo;
+use App\Form\VTTType;
 use App\Form\VeloType;
+use App\Entity\Electric;
+use App\Form\ElectricType;
 use App\Repository\VeloRepository;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 #[Route('/admin/velo')]
 class VeloCrudController extends AbstractController
@@ -21,12 +25,29 @@ class VeloCrudController extends AbstractController
         ]);
     }
 
-    #[Route('/new', name: 'velo_crud_new', methods: ['GET', 'POST'])]
-    public function new(Request $request): Response
+    #[Route('/new/{type}', name: 'velo_crud_new', methods: ['GET', 'POST'])]
+    public function new($type, Request $request): Response
     {
-        $velo = new Velo();
-        $form = $this->createForm(VeloType::class, $velo);
+
+        $velo = null;
+        $form = null;
+        switch ($type) {
+            case 'vtt':
+                $velo = new VTT();
+                $form = $this->createForm(VTTType::class, $velo);
+                break;
+            case 'elec':
+                $velo = new Electric();
+                $form = $this->createForm(ElectricType::class, $velo);
+                break;
+
+            default:
+                # code...
+                break;
+        }
+
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

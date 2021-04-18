@@ -2,12 +2,12 @@
 
 namespace App\Form;
 
-use App\Entity\Velo;
+use App\Entity\VTT;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class VeloType extends AbstractType
+class VTTType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -16,14 +16,16 @@ class VeloType extends AbstractType
             ->add('modele')
             ->add('poids')
             ->add('image')
-            ->add('type')
-            ->add('user');
+            ->add('suspension_avant')
+            ->add('suspension_arriere')
+            ->add('user')
+        ;
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => Velo::class,
+            'data_class' => VTT::class,
         ]);
     }
 }

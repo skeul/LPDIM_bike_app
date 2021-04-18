@@ -24,6 +24,7 @@
                 <td>{{ velo.modele }}</td>
                 <td>{{ velo.poids }}</td>
                 <td>{{ velo.image }}</td>
+                <td>{{ velo.type }}</td>
                 <td>
                     <a href="{{ path('velo_crud_show', {'id': velo.id}) }}">show</a>
                     <a href="{{ path('velo_crud_edit', {'id': velo.id}) }}">edit</a>
@@ -37,5 +38,6 @@
         </tbody>
     </table>
 
-    <a href="{{ path('velo_crud_new') }}">Create new</a>
+    <a href="{{ path('velo_crud_new' , {'type': 'vtt'}) }}">Create new VTT</a>
+    <a href="{{ path('velo_crud_new' , {'type': 'elec'}) }}">Create new Electrique</a>
 {% endblock %}
