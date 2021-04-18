@@ -56,9 +56,21 @@ class User implements UserInterface
      */
     private $velo;
 
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, inversedBy="userAmis")
+     */
+    private $amis;
+
+    /**
+     * @ORM\ManyToMany(targetEntity=User::class, mappedBy="amis")
+     */
+    private $userAmis;
+
     public function __construct()
     {
         $this->velo = new ArrayCollection();
+        $this->amis = new ArrayCollection();
+        $this->userAmis = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -198,6 +210,57 @@ class User implements UserInterface
             if ($velo->getUser() === $this) {
                 $velo->setUser(null);
             }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getAmis(): Collection
+    {
+        return $this->amis;
+    }
+
+    public function addAmi(self $ami): self
+    {
+        if (!$this->amis->contains($ami)) {
+            $this->amis[] = $ami;
+        }
+
+        return $this;
+    }
+
+    public function removeAmi(self $ami): self
+    {
+        $this->amis->removeElement($ami);
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|self[]
+     */
+    public function getUserAmis(): Collection
+    {
+        return $this->userAmis;
+    }
+
+    public function addUserAmi(self $userAmi): self
+    {
+        if (!$this->userAmis->contains($userAmi)) {
+            $this->userAmis[] = $userAmi;
+            $userAmi->addAmi($this);
+        }
+
+        return $this;
+    }
+
+    public function removeUserAmi(self $userAmi): self
+    {
+        if ($this->userAmis->removeElement($userAmi)) {
+            $userAmi->removeAmi($this);
         }
 
         return $this;
