@@ -14,6 +14,16 @@
         {% endblock %}
     </head>
     <body>
+    <div>
+        {% if app.user %}
+            <h3> {{ app.user.username }}</h3>
+            <button onclick="location.href='/logout'">Déconnexion</button>
+
+        {% else %}
+            <button onclick="location.href='/login'" >Connexion</button>
+            <button onclick="location.href='/register'">Inscription</button>
+        {% endif %}
+    </div>
         {% block body %}{% endblock %}
     </body>
 </html>
