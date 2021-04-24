@@ -8,14 +8,13 @@
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Username</th>
-                <th>Roles</th>
-                <th>Password</th>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Email</th>
-                <th>actions</th>
+                <th scope="col">Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">Roles</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Prenom</th>
+                <th scope="col">Email</th>
+                <th scope="col">actions</th>
             </tr>
         </thead>
         <tbody>
@@ -23,14 +22,23 @@
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.username }}</td>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-                <td>{{ user.password }}</td>
+                <td>
+                {% if user.roles %}
+                 {% for role in user.roles  %}
+                  <span class="badge badge-info">{{role}}</span>
+                 {% endfor %}
+                 {% endif %}
+                 </td>
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.email }}</td>
-                <td>
-                    <a href="{{ path('user_crud_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_crud_edit', {'id': user.id}) }}">edit</a>
+                <td class="table-actions">
+                    <a class="btn" href="{{ path('user_crud_show', {'id': user.id}) }}"><i class="fas fa-eye"></i></a>
+                    <a class="btn" href="{{ path('user_crud_edit', {'id': user.id}) }}"><i class="fas fa-edit"></i></a>
+                    <form method="post" action="{{ path('user_crud_delete', {'id': user.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cet utilisateur?');">
+                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                        <button class="btn"><i class="far fa-trash-alt"></i></button>
+                    </form>
                 </td>
             </tr>
         {% else %}
