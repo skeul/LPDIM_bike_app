@@ -1,5 +1,17 @@
 /* @import "~bootstrap/scss/bootstrap"; */
 @import "../../node_modules/bootstrap";
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
 body {
-    background-color: lightgray;
+    background-color: #ECECEC;
+}
+
+.btn.btn-icon > i{
+    margin-left: 10px;
+}
+
+/* ADMIN */
+.card {
+    width: 100%;
+    margin-bottom: 30px;
 }
