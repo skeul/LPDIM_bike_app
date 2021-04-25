@@ -16,7 +16,9 @@
                 <th scope="col">Nom</th>
                 <th scope="col">Prenom</th>
                 <th scope="col">Email</th>
+                <th scope="col">Amis</th>
                 <th scope="col">actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -34,6 +36,7 @@
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.email }}</td>
+                 <td>{{ user.amis|length }}
                 {% include 'commons/table-actions.html.twig' with {
                     'confirm_string': 'Voulez-vous vraiment supprimer cet utilisateur?', 
                     'show_path': 'user_crud_show',

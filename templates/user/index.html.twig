@@ -15,6 +15,7 @@
                 <th>Nom</th>
                 <th>Prenom</th>
                 <th>Email</th>
+                <th>Amis</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -28,6 +29,7 @@
                 <td>{{ user.nom }}</td>
                 <td>{{ user.prenom }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.amis|length }}
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
                     <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
