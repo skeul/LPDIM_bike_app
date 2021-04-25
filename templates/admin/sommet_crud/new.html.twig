@@ -3,9 +3,10 @@
 {% block title %}New Sommet{% endblock %}
 
 {% block body %}
-    <h1>Create new Sommet</h1>
+<a href="{{ path('sommet_crud_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+    <h1>Ajouter un sommet</h1>
 
-    {{ include('admin/sommet_crud/_form.html.twig') }}
+    {{ include('commons/admin-edit-add-form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('sommet_crud_index') }}">back to list</a>
+
 {% endblock %}
