@@ -14,16 +14,24 @@
         {% endblock %}
     </head>
     <body>
-    <div>
-        {% if app.user %}
-            <h3> {{ app.user.username }}</h3>
-            <button onclick="location.href='/logout'">Déconnexion</button>
+    <nav class="header-bar navbar navbar-light bg-light">
+        <div class="container d-flex align-items-center">
+            <div class="d-flex justify-self-start align-items-center">
+                <img src="{{asset('build/images/logo.svg')}}" title="Mon logo" alt="Logo vélo"class="navbar-logo">
+                <span class="navbar-title">Bike App</span>
+            </div>
+            <div class="navbar-actions ml-auto d-flex align-items-center">
+            {% if app.user %}
+                <h5 class="my-0 mr-2 h-100">{{ app.user.username }}</h5>
+                <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_logout') }}">Déconnexion</a>
 
-        {% else %}
-            <button onclick="location.href='/login'" >Connexion</button>
-            <button onclick="location.href='/register'">Inscription</button>
-        {% endif %}
-    </div>
+            {% else %}
+                <a class="btn btn-sm btn-outline-secondary mr-2" href="{{ path('app_login') }}" >Connexion</a>
+                <a class="btn btn-sm btn-outline-secondary" href="{{ path('app_register') }}">Inscription</a>
+            {% endif %}
+            </div>
+        </div>
+    </nav>
         <div class="container">
             {% block body %}
             {% endblock %}
