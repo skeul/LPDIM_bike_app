@@ -19,7 +19,7 @@
             <tr>
                 <td>{{ sortie.id }}</td>
                 <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
-                <td>{{ sortie.status }}</td>
+                <td>{{ sortie.status == 1 ? 'Programmée' : 'Terminée'  }}</td>
                 {% include 'commons/table-actions.html.twig' with {
                     'confirm_string': 'Voulez-vous vraiment supprimer cette sortie ?', 
                     'show_path': 'sortie_crud_show',

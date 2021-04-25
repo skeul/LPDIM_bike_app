@@ -3,6 +3,8 @@
 {% block title %}Sortie{% endblock %}
 
 {% block body %}
+<a href="{{ path('sortie_crud_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+
     <h1>Sortie</h1>
 
     <table class="table">
@@ -13,18 +15,19 @@
             </tr>
             <tr>
                 <th>Date_sortie</th>
-                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ sortie.status }}</td>
+                <td>{{ sortie.status == 1 ? 'Programmée' : 'Terminée'  }}</td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('sortie_crud_index') }}">back to list</a>
-
-    <a href="{{ path('sortie_crud_edit', {'id': sortie.id}) }}">edit</a>
-
-    {{ include('admin/sortie_crud/_delete_form.html.twig') }}
-{% endblock %}
+    {% include 'commons/show-form-action.html.twig' with {
+        'confirm_string': 'Voulez-vous vraiment supprimer cette sortie ?', 
+        'delete_path': 'sortie_crud_delete',
+        'edit_path': 'sortie_crud_edit',
+        'entity_id': sortie.id
+        }
+    %}{% endblock %}
