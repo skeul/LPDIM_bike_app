@@ -62,3 +62,15 @@ body {
 .table-actions .btn:hover{
     border: 1px solid;
 }
+
+.admin-forms form label{
+    display: block;
+}
+
+.admin-forms form input, .admin-forms form select{
+    display: block;
+    border: 0;
+    height: 30px;
+    min-width: 200px;
+    margin-bottom: 15px;
+}

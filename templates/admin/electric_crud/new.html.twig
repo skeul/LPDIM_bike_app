@@ -3,9 +3,10 @@
 {% block title %}New Electric{% endblock %}
 
 {% block body %}
-    <h1>Create new Electric</h1>
+<a href="{{ path('velo_crud_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
 
-    {{ include('admin/electric_crud/_form.html.twig') }}
+    <h1>Ajouter un vélo électrique</h1>
 
-    <a href="{{ path('electric_crud_index') }}">back to list</a>
+    {{ include('commons/admin-edit-add-form.html.twig', {'button_label': 'Valider'}) }}
+
 {% endblock %}

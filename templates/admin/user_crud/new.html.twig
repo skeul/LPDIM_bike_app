@@ -3,9 +3,9 @@
 {% block title %}New User{% endblock %}
 
 {% block body %}
-    <h1>Create new User</h1>
+<a href="{{ path('user_crud_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+    <h1>Ajouter un utilisateur</h1>
 
-    {{ include('admin/user_crud/_form.html.twig') }}
+    {{ include('commons/admin-edit-add-form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('user_crud_index') }}">back to list</a>
 {% endblock %}

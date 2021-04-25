@@ -3,11 +3,15 @@
 {% block title %}Edit Electric{% endblock %}
 
 {% block body %}
-    <h1>Edit Electric</h1>
+<a href="{{ path('velo_crud_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+    <h1>Modifier le vélo électrique</h1>
 
-    {{ include('admin/electric_crud/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('commons/admin-edit-add-form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('electric_crud_index') }}">back to list</a>
-
-    {{ include('admin/electric_crud/_delete_form.html.twig') }}
+    {% include 'commons/show-form-action.html.twig' with {
+        'confirm_string': 'Voulez-vous vraiment supprimer ce vélo?', 
+        'delete_path': 'electric_crud_delete',
+        'entity_id': electric.id
+        }
+    %}
 {% endblock %}

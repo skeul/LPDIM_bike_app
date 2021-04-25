@@ -3,7 +3,8 @@
 {% block title %}Electric{% endblock %}
 
 {% block body %}
-    <h1>Electric</h1>
+<a href="{{ path('velo_crud_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+    <h1>Vélo</h1>
 
     <table class="table">
         <tbody>
@@ -25,7 +26,13 @@
             </tr>
             <tr>
                 <th>Image</th>
-                <td>{{ electric.image }}</td>
+                <td>
+                    {% if electric.image %}
+                        <img src="{{electric.image}}" title="Mon velo" alt="image_velo" class="table-image">
+                    {% else %}
+                        <img src="{{asset('build/images/logo.svg')}}" title="Mon velo" alt="image_velo" class="table-image">
+                    {% endif %}
+                </td>
             </tr>
             <tr>
                 <th>Puissance</th>
@@ -38,9 +45,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('electric_crud_index') }}">back to list</a>
-
-    <a href="{{ path('electric_crud_edit', {'id': electric.id}) }}">edit</a>
-
-    {{ include('admin/electric_crud/_delete_form.html.twig') }}
+    {% include 'commons/show-form-action.html.twig' with {
+        'confirm_string': 'Voulez-vous vraiment supprimer ce vélo', 
+        'delete_path': 'electric_crud_delete',
+        'edit_path': 'electric_crud_edit',
+        'entity_id': electric.id
+        }
+    %}
 {% endblock %}

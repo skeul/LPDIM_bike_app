@@ -3,8 +3,7 @@
 {% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-    {# {% set title = 'Utilisateurs' %}
-    {% set toto = 'user_crud_new' %} #}
+<a href="{{ path('admin_dashboard') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
     {% include 'commons/table-title.html.twig' with {'title': 'Utilisateurs', 'chemin': 'user_crud_new'}%}
 
     <table class="table">

@@ -17,8 +17,7 @@ class ElectricAdminType extends AbstractType
             ->add('poids')
             ->add('image')
             ->add('puissance')
-            ->add('autonomie')
-            ->add('user');
+            ->add('autonomie');
     }
 
     public function configureOptions(OptionsResolver $resolver)
