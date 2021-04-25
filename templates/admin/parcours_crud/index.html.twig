@@ -20,14 +20,18 @@
                 <td>{{ parcour.id }}</td>
                 <td>{{ parcour.distance }}</td>
                 <td>{{ parcour.difficulte }}</td>
-                <td>
-                    <a href="{{ path('parcours_crud_show', {'id': parcour.id}) }}">show</a>
-                    <a href="{{ path('parcours_crud_edit', {'id': parcour.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce parcours ?', 
+                    'show_path': 'parcours_crud_show',
+                    'edit_path': 'parcours_crud_edit',
+                    'delete_path': 'parcours_crud_delete',
+                    'entity_id': parcour.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="4">no records found</td>
+                <td colspan="4">Aucun parcours trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

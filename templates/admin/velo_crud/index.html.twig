@@ -24,14 +24,18 @@
                 <td>{{ velo.modele }}</td>
                 <td>{{ velo.poids }}</td>
                 <td>{{ velo.image }}</td>
-                <td>
-                    <a href="{{ path('velo_crud_show', {'id': velo.id}) }}">show</a>
-                    <a href="{{ path('velo_crud_edit', {'id': velo.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce vélo?', 
+                    'show_path': 'velo_crud_show',
+                    'edit_path': 'velo_crud_edit',
+                    'delete_path': 'velo_crud_delete',
+                    'entity_id': velo.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun vélo trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

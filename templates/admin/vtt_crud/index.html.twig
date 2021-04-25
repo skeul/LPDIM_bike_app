@@ -28,14 +28,18 @@
                 <td>{{ vtt.image }}</td>
                 <td>{{ vtt.suspensionAvant }}</td>
                 <td>{{ vtt.suspensionArriere }}</td>
-                <td>
-                    <a href="{{ path('vtt_crud_show', {'id': vtt.id}) }}">show</a>
-                    <a href="{{ path('vtt_crud_edit', {'id': vtt.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce VTT?', 
+                    'show_path': 'vtt_crud_show',
+                    'edit_path': 'vtt_crud_edit',
+                    'delete_path': 'vtt_crud_delete',
+                    'entity_id': vtt.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun VTT trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

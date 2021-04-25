@@ -28,14 +28,18 @@
                 <td>{{ electric.image }}</td>
                 <td>{{ electric.puissance }}</td>
                 <td>{{ electric.autonomie }}</td>
-                <td>
-                    <a href="{{ path('electric_crud_show', {'id': electric.id}) }}">show</a>
-                    <a href="{{ path('electric_crud_edit', {'id': electric.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce vélo électrique ?', 
+                    'show_path': 'electric_crud_show',
+                    'edit_path': 'electric_crud_edit',
+                    'delete_path': 'electric_crud_delete',
+                    'entity_id': electric.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="8">no records found</td>
+                <td colspan="8">Aucun vélo électique trouvé</td>
             </tr>
         {% endfor %}
         </tbody>

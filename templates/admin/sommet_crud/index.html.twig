@@ -22,14 +22,18 @@
                 <td>{{ sommet.nom }}</td>
                 <td>{{ sommet.altitude }}</td>
                 <td>{{ sommet.lieu }}</td>
-                <td>
-                    <a href="{{ path('sommet_crud_show', {'id': sommet.id}) }}">show</a>
-                    <a href="{{ path('sommet_crud_edit', {'id': sommet.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce sommet ?', 
+                    'show_path': 'sommet_crud_show',
+                    'edit_path': 'sommet_crud_edit',
+                    'delete_path': 'sommet_crud_delete',
+                    'entity_id': sommet.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">aucun sommet trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
