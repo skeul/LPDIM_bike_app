@@ -3,7 +3,7 @@
 {% block title %}Sortie index{% endblock %}
 
 {% block body %}
-    <h1>Sortie index</h1>
+    {% include 'commons/table-title.html.twig' with {'title': 'Sortie', 'chemin': 'sortie_crud_new'}%}
 
     <table class="table">
         <thead>
@@ -18,12 +18,16 @@
         {% for sortie in sorties %}
             <tr>
                 <td>{{ sortie.id }}</td>
-                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
                 <td>{{ sortie.status }}</td>
-                <td>
-                    <a href="{{ path('sortie_crud_show', {'id': sortie.id}) }}">show</a>
-                    <a href="{{ path('sortie_crud_edit', {'id': sortie.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer cette sortie ?', 
+                    'show_path': 'sortie_crud_show',
+                    'edit_path': 'sortie_crud_edit',
+                    'delete_path': 'sortie_crud_delete',
+                    'entity_id': sortie.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
@@ -33,5 +37,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('sortie_crud_new') }}">Create new</a>
 {% endblock %}
