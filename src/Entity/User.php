@@ -11,7 +11,8 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
- * @UniqueEntity(fields={"username"}, message="There is already an account with this username")
+ * @UniqueEntity(fields={"username"}, message="Ce username n'est pas disponible")
+ * @UniqueEntity(fields={"email"}, message="Cet email est déjà utilisé avec un autre compte")
  */
 class User implements UserInterface
 {
@@ -49,7 +50,7 @@ class User implements UserInterface
     private $prenom;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -98,7 +99,7 @@ class User implements UserInterface
 
     public function setUsername(string $username): self
     {
-        $this->username = $username;
+        $this->username = strtolower($username);
 
         return $this;
     }

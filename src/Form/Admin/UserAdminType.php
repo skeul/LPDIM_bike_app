@@ -6,15 +6,23 @@ use App\Entity\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\Length;
+use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 class UserAdminType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('username')
+            ->add('username', TextType::class, [
+                'required' => true,
+                'constraints' => [new Length(['min' => 3])],
+            ])
             ->add('Roles', ChoiceType::class, [
                 'required' => true,
                 'multiple' => false,
@@ -25,13 +33,33 @@ class UserAdminType extends AbstractType
                     'No Role' => null,
                 ],
             ])
-            ->add('password')
-            ->add('nom')
-            ->add('prenom')
-            ->add('email');
-        // ->add('amis')
-        // ->add('userAmis')
-        // ->add('sorties');
+            ->add('password', PasswordType::class, [
+                'constraints' => [
+                    new NotBlank([
+                        'message' => 'Merci d\'ajouter un mot de passe',
+                    ]),
+                    new Length([
+                        'min' => 6,
+                        'minMessage' => 'Votre mot de passe doit avoir au moins {{ limit }} caractères',
+                        // max length allowed by Symfony for security reasons
+                        'max' => 4096,
+                    ]),
+                ],
+            ])
+            ->add('nom', TextType::class, [
+                'required' => true,
+                'constraints' => [new Length(['min' => 1])],
+            ])
+            ->add('prenom', TextType::class, [
+                'required' => true,
+                'constraints' => [new Length(['min' => 1])],
+            ])
+            ->add('email', EmailType::class, [
+                'required' => true,
+                'attr' => array(
+                    'placeholder' => 'toto@titi.com',
+                )
+            ]);
 
         // Data transformer
         $builder->get('Roles')
