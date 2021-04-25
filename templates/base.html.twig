@@ -33,6 +33,10 @@
         </div>
     </nav>
         <div class="container my-5">
+            {% set url = app.request.attributes.get('_route')  %}
+            {% if 'crud' in url or 'admin' in url %}
+                {% include 'commons/admin-nav.html.twig' %}
+            {% endif %}
             {% block body %}
             {% endblock %}
         </div>
