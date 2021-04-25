@@ -3,7 +3,7 @@
 {% block title %}Electric index{% endblock %}
 
 {% block body %}
-    {% include 'commons/table-title.html.twig' with {'title': 'Vélos électriques'} %}
+    {% include 'commons/table-title.html.twig' with {'title': 'Vélos électriques', 'chemin': 'electric_crud_new'} %}
 
     <table class="table">
         <thead>
@@ -41,5 +41,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('electric_crud_new') }}">Create new</a>
 {% endblock %}

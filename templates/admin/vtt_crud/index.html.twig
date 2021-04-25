@@ -3,7 +3,7 @@
 {% block title %}VTT index{% endblock %}
 
 {% block body %}
-    {% include 'commons/table-title.html.twig' with {'title': 'Vtts'} %}
+    {% include 'commons/table-title.html.twig' with {'title': 'Vtts', 'chemin': 'vtt_crud_new'} %}
 
     <table class="table">
         <thead>
@@ -41,5 +41,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('vtt_crud_new') }}">Create new</a>
 {% endblock %}

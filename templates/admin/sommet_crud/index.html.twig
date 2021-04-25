@@ -3,7 +3,7 @@
 {% block title %}Sommet index{% endblock %}
 
 {% block body %}
-    {% include 'commons/table-title.html.twig' with {'title': 'Sommets'} %}
+    {% include 'commons/table-title.html.twig' with {'title': 'Sommets', 'chemin': 'sommet_crud_new'} %}
 
     <table class="table">
         <thead>
@@ -35,5 +35,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('sommet_crud_new') }}">Create new</a>
 {% endblock %}

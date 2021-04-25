@@ -3,7 +3,7 @@
 {% block title %}Parcours index{% endblock %}
 
 {% block body %}
-    {% include 'commons/table-title.html.twig' with {'title': 'Parcours'} %}
+    {% include 'commons/table-title.html.twig' with {'title': 'Parcours', 'chemin': 'parcours_crud_new'} %}
 
     <table class="table">
         <thead>
@@ -33,5 +33,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('parcours_crud_new') }}">Create new</a>
 {% endblock %}

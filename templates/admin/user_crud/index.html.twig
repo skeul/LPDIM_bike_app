@@ -3,8 +3,9 @@
 {% block title %}Utilisateurs{% endblock %}
 
 {% block body %}
-
-    {% include 'commons/table-title.html.twig' with {'title': 'Utilisateurs'} %}
+    {# {% set title = 'Utilisateurs' %}
+    {% set toto = 'user_crud_new' %} #}
+    {% include 'commons/table-title.html.twig' with {'title': 'Utilisateurs', 'chemin': 'user_crud_new'}%}
 
     <table class="table">
         <thead>
