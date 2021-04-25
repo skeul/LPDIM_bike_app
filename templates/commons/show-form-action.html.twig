@@ -1,0 +1,12 @@
+<div class="d-flex align-items-center">
+    {% if edit_path  is defined %}
+        <a href="{{ path(edit_path, {'id': entity_id}) }}" class="btn btn-outline-primary mr-2">Modifier</a>
+    {% endif %}
+    <form 
+        method="post" 
+        action="{{ path(delete_path, {'id': entity_id}) }}" 
+        onsubmit="return confirm('{{confirm_string}}');">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ entity_id) }}">
+        <button class="btn btn-outline-danger">Supprimer</button>
+    </form>
+</div>
