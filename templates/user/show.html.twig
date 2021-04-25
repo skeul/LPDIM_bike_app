@@ -35,6 +35,9 @@
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
+            {% for ami in user.amis %}
+            {{ami.nom}}
+            {% endfor %}
         </tbody>
     </table>
 

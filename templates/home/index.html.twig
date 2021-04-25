@@ -1,5 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Bike App{% endblock %}
+{% block title %}Accueil{% endblock %}
 
+{% block body %}
+    <h1>Accueil</h1>
 
+    {% for ami in user.amis %}
+    {{ami.nom}}
+    {% endfor %}
+    <a href="{{path('user_add_friend', {'id': user.id })}}">Add ami</a>
+{% endblock %}

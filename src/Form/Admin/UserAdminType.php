@@ -34,6 +34,7 @@ class UserAdminType extends AbstractType
                 ],
             ])
             ->add('password', PasswordType::class, [
+                'mapped' => false,
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Merci d\'ajouter un mot de passe',
