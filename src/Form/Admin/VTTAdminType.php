@@ -17,8 +17,7 @@ class VTTAdminType extends AbstractType
             ->add('poids')
             ->add('image')
             ->add('suspension_avant')
-            ->add('suspension_arriere')
-            ->add('user');
+            ->add('suspension_arriere');
     }
 
     public function configureOptions(OptionsResolver $resolver)

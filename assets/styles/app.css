@@ -35,6 +35,7 @@ body {
 
 .table-actions {
    border: 0;
+   border-top: 0 !important;
    display: flex;
 }
 

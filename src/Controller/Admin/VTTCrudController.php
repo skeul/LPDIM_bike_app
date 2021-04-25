@@ -30,6 +30,7 @@ class VTTCrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $vTT->setUser($this->getUser());
             $entityManager->persist($vTT);
             $entityManager->flush();
 

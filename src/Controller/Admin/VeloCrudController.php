@@ -51,6 +51,8 @@ class VeloCrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $velo->setUser($this->getUser());
+
             $entityManager->persist($velo);
             $entityManager->flush();
 

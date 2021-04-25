@@ -30,6 +30,7 @@ class SortieCrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $sortie->addUser($this->getUser());
             $entityManager->persist($sortie);
             $entityManager->flush();
 

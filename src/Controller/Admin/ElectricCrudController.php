@@ -30,6 +30,7 @@ class ElectricCrudController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $electric->setUser($this->getUser());
             $entityManager->persist($electric);
             $entityManager->flush();
 
