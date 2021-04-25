@@ -3,7 +3,7 @@
 {% block title %}Sommet index{% endblock %}
 
 {% block body %}
-    <h1>Sommet index</h1>
+    {% include 'commons/table-title.html.twig' with {'title': 'Sommets'} %}
 
     <table class="table">
         <thead>

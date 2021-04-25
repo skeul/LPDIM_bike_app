@@ -16,6 +16,13 @@ body {
     align-self: flex-start;
 }
 
+.table-title{
+    font-size: 16px;
+}
+.table-title:hover{
+    text-decoration: none;
+}
+
 /* ADMIN */
 .card {
     width: 100%;
