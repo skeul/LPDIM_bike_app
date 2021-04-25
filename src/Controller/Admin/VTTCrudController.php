@@ -16,9 +16,7 @@ class VTTCrudController extends AbstractController
     #[Route('/', name: 'vtt_crud_index', methods: ['GET'])]
     public function index(VTTRepository $vTTRepository): Response
     {
-        return $this->render('admin/vtt_crud/index.html.twig', [
-            'vtts' => $vTTRepository->findAll(),
-        ]);
+        return $this->redirectToRoute('velo_crud_index');
     }
 
     #[Route('/new', name: 'vtt_crud_new', methods: ['GET', 'POST'])]
@@ -34,7 +32,7 @@ class VTTCrudController extends AbstractController
             $entityManager->persist($vTT);
             $entityManager->flush();
 
-            return $this->redirectToRoute('vtt_crud_index');
+            return $this->redirectToRoute('velo_crud_index');
         }
 
         return $this->render('admin/vtt_crud/new.html.twig', [
@@ -60,7 +58,7 @@ class VTTCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('vtt_crud_index');
+            return $this->redirectToRoute('velo_crud_index');
         }
 
         return $this->render('admin/vtt_crud/edit.html.twig', [
@@ -78,6 +76,6 @@ class VTTCrudController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('vtt_crud_index');
+        return $this->redirectToRoute('velo_crud_index');
     }
 }

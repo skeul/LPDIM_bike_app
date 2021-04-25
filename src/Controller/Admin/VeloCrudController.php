@@ -40,7 +40,6 @@ class VeloCrudController extends AbstractController
                 $velo = new Electric();
                 $form = $this->createForm(ElectricAdminType::class, $velo);
                 break;
-
             default:
                 # code...
                 break;
@@ -78,7 +77,6 @@ class VeloCrudController extends AbstractController
     {
         if ($velo instanceof VTT) {
             $velo = new VTT();
-            dd($velo);
             $form = $this->createForm(VTTAdminType::class, $velo);
         }
 

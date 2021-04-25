@@ -16,9 +16,7 @@ class ElectricCrudController extends AbstractController
     #[Route('/', name: 'electric_crud_index', methods: ['GET'])]
     public function index(ElectricRepository $electricRepository): Response
     {
-        return $this->render('admin/electric_crud/index.html.twig', [
-            'electrics' => $electricRepository->findAll(),
-        ]);
+        return $this->redirectToRoute('velo_crud_index');
     }
 
     #[Route('/new', name: 'electric_crud_new', methods: ['GET', 'POST'])]
@@ -34,7 +32,7 @@ class ElectricCrudController extends AbstractController
             $entityManager->persist($electric);
             $entityManager->flush();
 
-            return $this->redirectToRoute('electric_crud_index');
+            return $this->redirectToRoute('velo_crud_index');
         }
 
         return $this->render('admin/electric_crud/new.html.twig', [
@@ -60,7 +58,7 @@ class ElectricCrudController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('electric_crud_index');
+            return $this->redirectToRoute('velo_crud_index');
         }
 
         return $this->render('admin/electric_crud/edit.html.twig', [
@@ -78,6 +76,6 @@ class ElectricCrudController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('electric_crud_index');
+        return $this->redirectToRoute('velo_crud_index');
     }
 }

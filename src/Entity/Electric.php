@@ -44,4 +44,9 @@ class Electric extends Velo
 
         return $this;
     }
+
+    public function getClass($object)
+    {
+        return (new \ReflectionClass($object))->getShortName();
+    }
 }
