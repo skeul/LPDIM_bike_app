@@ -3,12 +3,40 @@
 {% block title %}Accueil{% endblock %}
 
 {% block body %}
-    <h1>Accueil</h1>
+    <h1>Mon Tableau de bord</h1>
 
-    {% if user is not null %}
-    {% for ami in user.amis %}
-    {{ami.nom}}
-    {% endfor %}
-        <a href="{{path('user_add_friend', {'id': user.id })}}">Add ami</a>
-    {% endif %}
+
+
+    <div class="d-flex h-100">
+        <div class="w-75">
+            {% if user is  null %}
+                <p>Pour profiter pleinement des fonctionnalitées de notre application, Inscrivez ou connectez-vous ! </p>
+            {% else %}
+                <div class="d-flex flex-column p-2 flex-grow-1 flex-shrink-1 justify-content-between h-100">
+                    <div class="w-100 bgcolor-green-primary rounded p-2 m-2 h-100">
+                        <h2>Mes Velos</h2>
+                    </div>
+                    <div class="w-100 bgcolor-brow-primary rounded p-2 m-2 h-100">
+                        <h2>Mes Sorties</h2>
+                    </div>
+                    <div class="w-100 bgcolor-blue-primary rounded p-2 m-2 h-100">
+                        <h2>Mes Amis</h2>
+                        {% for ami in user.amis %}
+                            {{ami.nom}}
+                        {% endfor %}
+                        <a href="{{path('user_add_friend', {'id': user.id })}}">Add ami</a>
+                    </div>
+                </div>
+
+            {% endif %}
+        </div>
+        <div class="w-25">
+            <div class="p-2  h-100">
+                <div class="bgcolor-red-primary rounded p-2 m-2 h-100">
+                    <h2>Top Parcours</h2>
+                </div>
+            </div>
+
+        </div>
+    </div>
 {% endblock %}
