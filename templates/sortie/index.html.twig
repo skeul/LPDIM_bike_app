@@ -5,6 +5,7 @@
 {% block body %}
     <h1>Toutes Mes Sorties</h1>
 
+    <div class="d-flex flex-column">
     <table class="table">
         <thead>
             <tr>
@@ -46,4 +47,14 @@
     </table>
 
     <a href="{{ path('sortie_new') }}">Create new</a>
+
+    <div class="d-flex">
+    <div class="w-100 bgcolor-brow-primary rounded  p-2 mr-2  h-100 pointer" onclick="location.href='/parcours'">
+        <h2>Gèrer les parcours</h2>
+    </div>
+    <div class="w-100 bgcolor-red-primary rounded  p-2  h-100 pointer" onclick="location.href='/sommet'">
+        <h2>Gèrer les sommets</h2>
+    </div>
+    </div>
+    </div>
 {% endblock %}

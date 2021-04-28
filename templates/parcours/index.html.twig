@@ -3,7 +3,7 @@
 {% block title %}Parcours index{% endblock %}
 
 {% block body %}
-    <h1>Mes Parcours</h1>
+    <h1>Tout les Parcours</h1>
 
     <table class="table">
         <thead>
@@ -12,6 +12,7 @@
                 <th>Distance</th>
                 <th>Difficulty</th>
                 <th>Name</th>
+                <th>Passe par les sommets</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,9 +20,14 @@
         {% for parcour in parcours %}
             <tr>
 {#                <td>{{ parcour.id }}</td>#}
-                <td>{{ parcour.distance }}</td>
-                <td>{{ parcour.difficulte }}</td>
+                <td>{{ parcour.distance }}Km</td>
+                <td>{{ parcour.difficulte }}/10</td>
                 <td>{{ parcour.name }}</td>
+                <td>
+                    {% for sommet in parcour.sommet %}
+                    <p>{{sommet.nom}}({{sommet.altitude}}m)</p>
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('parcours_show', {'id': parcour.id}) }}">show</a>
                     <a href="{{ path('parcours_edit', {'id': parcour.id}) }}">edit</a>

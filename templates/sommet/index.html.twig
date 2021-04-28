@@ -1,14 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Sommet index{% endblock %}
+{% block title %}Les sommets{% endblock %}
 
 {% block body %}
-    <h1>Sommet index</h1>
+    <h1>Tout Les Sommets</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+{#                <th>Id</th>#}
                 <th>Nom</th>
                 <th>Altitude</th>
                 <th>Lieu</th>
@@ -18,9 +18,9 @@
         <tbody>
         {% for sommet in sommets %}
             <tr>
-                <td>{{ sommet.id }}</td>
+{#                <td>{{ sommet.id }}</td>#}
                 <td>{{ sommet.nom }}</td>
-                <td>{{ sommet.altitude }}</td>
+                <td>{{ sommet.altitude }}m</td>
                 <td>{{ sommet.lieu }}</td>
                 <td>
                     <a href="{{ path('sommet_show', {'id': sommet.id}) }}">show</a>
