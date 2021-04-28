@@ -3,14 +3,14 @@
 {% block title %}Velo index{% endblock %}
 
 {% block body %}
-    <h1>Velo index</h1>
+    <h1>Mes Velos</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
+{#                <th>Id</th>#}
                 <th>Marque</th>
-                <th>Modele</th>
+                <th>Modèle</th>
                 <th>Poids</th>
                 <th>Image</th>
                 <th>actions</th>
@@ -19,7 +19,7 @@
         <tbody>
         {% for velo in velos %}
             <tr>
-                <td>{{ velo.id }}</td>
+{#                <td>{{ velo.id }}</td>#}
                 <td>{{ velo.marque }}</td>
                 <td>{{ velo.modele }}</td>
                 <td>{{ velo.poids }}</td>

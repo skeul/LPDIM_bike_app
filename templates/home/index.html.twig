@@ -16,13 +16,17 @@
                     <div class="w-100 bgcolor-green-primary rounded p-2  mb-2 h-100 pointer" onclick="location.href='/velo'">
                         <h2>Mes Velos</h2>
                     </div>
-                    <div class="w-100 bgcolor-brow-primary rounded  p-2  h-100 pointer" onclick="location.href='/parcours'">
-                       <h2>Mes Parcours</h2>
+                    <div class="w-100 bgcolor-brow-primary rounded  p-2  h-100 pointer" onclick="location.href='/sortie'">
+                       <h2>Mes Sorties</h2>
                     </div>
                     <div class="w-100 bgcolor-blue-primary rounded  p-2 mt-2 h-100 pointer" onclick="location.href='/user'">
                         <h2>Mes Amis</h2>
                         {% for ami in user.amis %}
-                            {{ami.nom}}
+                            <div class="d-flex">
+                                <h4 class="text-secondary mr-2">{{ami.username}}</h4>
+                                <h4 class="text-secondary mr-2"> {{ami.prenom}}</h4>
+                                <h4 class="text-secondary mr-2">{{ami.nom}}</h4>
+                            </div>
                         {% endfor %}
                         <a href="{{path('user_add_friend', {'id': user.id })}}">Add ami</a>
                     </div>

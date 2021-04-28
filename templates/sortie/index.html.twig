@@ -3,13 +3,13 @@
 {% block title %}Sortie index{% endblock %}
 
 {% block body %}
-    <h1>Sortie index</h1>
+    <h1>Mes Sorties</h1>
 
     <table class="table">
         <thead>
             <tr>
-                <th>Id</th>
-                <th>Date_sortie</th>
+{#                <th>Id</th>#}
+                <th>Date de la sortie</th>
                 <th>Status</th>
                 <th>Nom</th>
                 <th>actions</th>
@@ -17,8 +17,9 @@
         </thead>
         <tbody>
         {% for sortie in sorties %}
+            {% if is_granted('view',sortie) %}
             <tr>
-                <td>{{ sortie.id }}</td>
+{#                <td>{{ sortie.id }}</td>#}
                 <td>{{ sortie.dateSortie ? sortie.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ sortie.status }}</td>
                 <td>{{ sortie.nom }}</td>
@@ -27,6 +28,7 @@
                     <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">edit</a>
                 </td>
             </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="5">no records found</td>
