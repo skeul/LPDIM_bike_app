@@ -161,3 +161,7 @@ body {
 .bgcolor-red-dark{
     background-color: #9f0000;
 }
+
+.pointer{
+    cursor : pointer;
+}
