@@ -23,6 +23,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'user' => $user,
             'sorties' => $sortieRepository->findAll(),
+            //'sorties' => $sortieRepository->findby(array('date_sortie' => 'DESC')),
         ]);
     }
 }
