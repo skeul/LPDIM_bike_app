@@ -12,14 +12,14 @@
             {% if user is  null %}
                 <p>Pour profiter pleinement des fonctionnalitées de notre application, Inscrivez ou connectez-vous ! </p>
             {% else %}
-                <div class="d-flex flex-column p-2 flex-grow-1 flex-shrink-1 justify-content-between h-100">
-                    <div class="w-100 bgcolor-green-primary rounded p-2 m-2 h-100 pointer" onclick="location.href='/velo'">
+                <div class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-content-between h-100">
+                    <div class="w-100 bgcolor-green-primary rounded p-2  mb-2 h-100 pointer" onclick="location.href='/velo'">
                         <h2>Mes Velos</h2>
                     </div>
-                    <div class="w-100 bgcolor-brow-primary rounded p-2 m-2 h-100 pointer" onclick="location.href='/parcours'">
+                    <div class="w-100 bgcolor-brow-primary rounded  p-2  h-100 pointer" onclick="location.href='/parcours'">
                        <h2>Mes Parcours</h2>
                     </div>
-                    <div class="w-100 bgcolor-blue-primary rounded p-2 m-2 h-100 pointer" onclick="location.href='/user'">
+                    <div class="w-100 bgcolor-blue-primary rounded  p-2 mt-2 h-100 pointer" onclick="location.href='/user'">
                         <h2>Mes Amis</h2>
                         {% for ami in user.amis %}
                             {{ami.nom}}
@@ -31,10 +31,8 @@
             {% endif %}
         </div>
         <div class="w-25">
-            <div class="p-2  h-100">
-                <div class="bgcolor-red-primary rounded p-2 m-2 h-100">
+                <div class="bgcolor-red-primary rounded p-2 h-100 ml-2 h-100">
                     <h2>Top Parcours</h2>
-                </div>
             </div>
 
         </div>
