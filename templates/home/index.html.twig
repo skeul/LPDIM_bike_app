@@ -17,7 +17,17 @@
                         <h2>Mes Velos</h2>
                     </div>
                     <div class="w-100 bgcolor-brow-primary rounded  p-2  h-100 pointer" onclick="location.href='/sortie'">
-                       <h2>Mes Sorties</h2>
+                       <h2>Mes Dernières Sorties</h2>
+                        {% for sortie in sorties %}
+
+                        {% if is_granted('view',sortie) %}
+                            <div class="d-flex">
+                                <h4 class="text-secondary mr-2"> {{ sortie.dateSortie ? sortie.dateSortie|date('H:i:s d-m-Y') : '' }}</h4>
+                                <h4 class="text-secondary mr-2"> {{ sortie.status }}</h4>
+                                <h4 class="text-secondary mr-2">{{ sortie.nom }}</h4>
+                            </div>
+                        {% endif %}
+                        {% endfor %}
                     </div>
                     <div class="w-100 bgcolor-blue-primary rounded  p-2 mt-2 h-100 pointer" onclick="location.href='/user'">
                         <h2>Mes Amis</h2>

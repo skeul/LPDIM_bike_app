@@ -3,7 +3,7 @@
 {% block title %}Sortie index{% endblock %}
 
 {% block body %}
-    <h1>Mes Sorties</h1>
+    <h1>Toutes Mes Sorties</h1>
 
     <table class="table">
         <thead>
@@ -12,6 +12,8 @@
                 <th>Date de la sortie</th>
                 <th>Status</th>
                 <th>Nom</th>
+                <th>Parcours</th>
+                <th>Avec</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,9 +22,15 @@
             {% if is_granted('view',sortie) %}
             <tr>
 {#                <td>{{ sortie.id }}</td>#}
-                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('H:i:s d-m-y') : '' }}</td>
                 <td>{{ sortie.status }}</td>
                 <td>{{ sortie.nom }}</td>
+                <td>{{ sortie.parcours }}</td>
+                <td>
+                    {% for user in sortie.users %}
+                    <p>{{user}}</p>
+                    {% endfor %}
+                </td>
                 <td>
                     <a href="{{ path('sortie_show', {'id': sortie.id}) }}">show</a>
                     <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">edit</a>
