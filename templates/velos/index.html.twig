@@ -15,7 +15,6 @@
             <th>Image</th>
             <th>Suspension Avant</th>
             <th>Suspension Arrière</th>
-            <th>Image</th>
             <th>actions</th>
         </tr>
         </thead>
@@ -25,10 +24,10 @@
                 {#                <td>{{ velo.id }}</td>#}
                 <td>{{ vtt.marque }}</td>
                 <td>{{ vtt.modele }}</td>
-                <td>{{ vtt.poids }}</td>
+                <td>{{ vtt.poids }} KG</td>
                 <td>{{ vtt.image }}</td>
-{#                <td>{{vtt.suspension_avant}}</td>#}
-{#                <td>{{vtt.suspension_arriere}}</td>#}
+                <td>{{vtt.suspensionAvant}}</td>
+                <td>{{vtt.suspensionArriere}}</td>
                 <td>
                     <a href="{{ path('vtt_show', {'id': vtt.id}) }}">show</a>
                     <a href="{{ path('vtt_edit', {'id': vtt.id}) }}">edit</a>
@@ -53,6 +52,8 @@
             <th>Modèle</th>
             <th>Poids</th>
             <th>Image</th>
+            <td>Puissance</td>
+            <td>Autonomie</td>
             <th>actions</th>
         </tr>
         </thead>
@@ -62,8 +63,10 @@
                 {#                <td>{{ velo.id }}</td>#}
                 <td>{{ electric.marque }}</td>
                 <td>{{ electric.modele }}</td>
-                <td>{{ electric.poids }}</td>
+                <td>{{ electric.poids }} KG</td>
                 <td>{{ electric.image }}</td>
+                <td>{{electric.puissance}} KW</td>
+                <td>{{electric.autonomie}} KM</td>
                 <td>
                     <a href="{{ path('electric_show', {'id': electric.id}) }}">show</a>
                     <a href="{{ path('electric_edit', {'id': electric.id}) }}">edit</a>

@@ -16,8 +16,8 @@ class VTTType extends AbstractType
             ->add('modele')
             ->add('poids')
             ->add('image')
-            ->add('suspension_avant')
-            ->add('suspension_arriere')
+            ->add('suspensionAvant')
+            ->add('suspensionArriere')
             ->add('user')
         ;
     }

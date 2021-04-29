@@ -15,33 +15,33 @@ class VTT extends Velo
     /**
      * @ORM\Column(type="integer")
      */
-    private $suspension_avant;
+    private $suspensionAvant;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $suspension_arriere;
+    private $suspensionArriere;
 
     public function getSuspensionAvant(): ?int
     {
-        return $this->suspension_avant;
+        return $this->suspensionAvant;
     }
 
-    public function setSuspensionAvant(int $suspension_avant): self
+    public function setSuspensionAvant(int $suspensionAvant): self
     {
-        $this->suspension_avant = $suspension_avant;
+        $this->suspensionAvant = $suspensionAvant;
 
         return $this;
     }
 
     public function getSuspensionArriere(): ?int
     {
-        return $this->suspension_arriere;
+        return $this->suspensionArriere;
     }
 
-    public function setSuspensionArriere(int $suspension_arriere): self
+    public function setSuspensionArriere(int $suspensionArriere): self
     {
-        $this->suspension_arriere = $suspension_arriere;
+        $this->suspensionArriere = $suspensionArriere;
 
         return $this;
     }
