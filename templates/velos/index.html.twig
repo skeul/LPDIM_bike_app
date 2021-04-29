@@ -1,0 +1,81 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Velos{% endblock %}
+
+{% block body %}
+    <h1>Mes VTT</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            {#                <th>Id</th>#}
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Poids</th>
+            <th>Image</th>
+            <th>Suspension Avant</th>
+            <th>Suspension Arrière</th>
+            <th>Image</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for vtt in vtts %}
+            <tr>
+                {#                <td>{{ velo.id }}</td>#}
+                <td>{{ vtt.marque }}</td>
+                <td>{{ vtt.modele }}</td>
+                <td>{{ vtt.poids }}</td>
+                <td>{{ vtt.image }}</td>
+{#                <td>{{vtt.suspension_avant}}</td>#}
+{#                <td>{{vtt.suspension_arriere}}</td>#}
+                <td>
+                    <a href="{{ path('vtt_show', {'id': vtt.id}) }}">show</a>
+                    <a href="{{ path('vtt_edit', {'id': vtt.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('vtt_new') }}">Create new</a>
+    <h1>Mes Velos Electriques</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            {#                <th>Id</th>#}
+            <th>Marque</th>
+            <th>Modèle</th>
+            <th>Poids</th>
+            <th>Image</th>
+            <th>actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for electric in electrics %}
+            <tr>
+                {#                <td>{{ velo.id }}</td>#}
+                <td>{{ electric.marque }}</td>
+                <td>{{ electric.modele }}</td>
+                <td>{{ electric.poids }}</td>
+                <td>{{ electric.image }}</td>
+                <td>
+                    <a href="{{ path('electric_show', {'id': electric.id}) }}">show</a>
+                    <a href="{{ path('electric_edit', {'id': electric.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('electric_new') }}">Create new</a>
+{% endblock %}
