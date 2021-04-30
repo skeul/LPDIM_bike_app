@@ -67,12 +67,25 @@ body {
     display: block;
 }
 
-.admin-forms form input, .admin-forms form select{
+.admin-forms form input, .admin-forms form select.selector{
     display: block;
     border: 0;
     height: 30px;
     min-width: 200px;
     margin-bottom: 15px;
+}
+
+.admin-forms form select.selector-multiple{
+    display: block;
+    border: 0;
+    height: auto;
+    min-width: 200px;
+    margin-bottom: 15px;
+}
+
+.admin-forms form .form-helper{
+    font-size: 12px;
+    margin-top: -10px;
 }
 
 .color-green-primary{

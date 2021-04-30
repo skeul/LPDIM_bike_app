@@ -27,6 +27,7 @@ class UserAdminType extends AbstractType
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
+                'attr' => ['class' => 'selector'],
                 'choices'  => [
                     'User' => 'ROLE_USER',
                     'Admin' => 'ROLE_ADMIN',
