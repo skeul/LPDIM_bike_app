@@ -31,7 +31,21 @@ class SortieRepository extends ServiceEntityRepository
             ->innerJoin('s.parcours', 'p', 'WITH', 'p.id = s.parcours')
             ->groupBy('p.id')
             ->orderBy('nbfois', 'DESC')
-            //->setMaxResults(5)
+            ->setMaxResults(10)
+            ->getQuery()
+            ->getResult();
+
+    }
+
+
+    public function findLastSorties($user)
+    {
+        return $this->createQueryBuilder('s')->select('s.nom','s.date_sortie')
+            //->andWhere('s.status = 1')
+            ->setParameter('user', $user)
+            ->innerJoin('s.users', 'u', 'WITH', 'u.id = :user')
+            ->orderBy('s.date_sortie', 'DESC')
+            ->setMaxResults(4)
             ->getQuery()
             ->getResult();
 

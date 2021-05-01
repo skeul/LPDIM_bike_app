@@ -23,7 +23,7 @@ class HomeController extends AbstractController
         return $this->render('home/index.html.twig', [
             'controller_name' => 'HomeController',
             'user' => $user,
-            'sorties' => $sortieRepository->findAll(),
+            'sorties' => $sortieRepository->findLastSorties($this->getUser()),
             'distance' => $sortieRepository->getTotalDistanceByUser($this->getUser()),
             //'sorties' => $sortieRepository->findby(array('date_sortie' => 'DESC')),
             'topparcours' => $sortieRepository->findTopParcours($this->getUser())

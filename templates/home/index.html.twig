@@ -21,13 +21,12 @@
                        <h2>Mes Dernières Sorties</h2>
                         {% for sortie in sorties %}
 
-                        {% if is_granted('view',sortie) %}
+{#                        {% if is_granted('view',sortie) %}#}
                             <div class="d-flex">
-                                <h4 class="color-white mr-2"> {{ sortie.dateSortie ? sortie.dateSortie|date('H:i:s d-m-Y') : '' }}</h4>
-                                <h4 class="color-white mr-2"> {{ sortie.status }}</h4>
-                                <h4 class="color-white mr-2">{{ sortie.nom }}</h4>
+                                <h5 class="color-white mr-2">{{ sortie.nom }}</h5>
+                                <h5 class="color-white mr-2"> {{ sortie.date_sortie ? sortie.date_sortie|date('d-m-Y H:i') : '' }}</h5>
                             </div>
-                        {% endif %}
+{#                        {% endif %}#}
                         {% endfor %}
                     </div>
                     <div class="w-100 bgcolor-blue-primary rounded  p-2 mt-2 h-100 pointer" onclick="location.href='{{ path('user_index') }}'">
