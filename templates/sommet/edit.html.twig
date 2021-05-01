@@ -3,11 +3,16 @@
 {% block title %}Edit Sommet{% endblock %}
 
 {% block body %}
-    <h1>Edit Sommet</h1>
+<a href="{{ path('sommet_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+    <h1>Modifier le sommet</h1>
 
-    {{ include('sommet/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('commons/admin-edit-add-form.html.twig', {'button_label': 'Valider'}) }}
 
-    <a href="{{ path('sommet_index') }}">back to list</a>
+    {% include 'commons/show-form-action.html.twig' with {
+        'confirm_string': 'Voulez-vous vraiment supprimer ce sommet', 
+        'delete_path': 'sommet_delete',
+        'entity_id': sommet.id
+        }
+    %}
 
-    {{ include('sommet/_delete_form.html.twig') }}
 {% endblock %}

@@ -3,6 +3,8 @@
 {% block title %}Sommet{% endblock %}
 
 {% block body %}
+<a href="{{ path('sommet_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+
     <h1>Sommet</h1>
 
     <table class="table">
@@ -26,9 +28,11 @@
         </tbody>
     </table>
 
-    <a href="{{ path('sommet_index') }}">back to list</a>
-
-    <a href="{{ path('sommet_edit', {'id': sommet.id}) }}">edit</a>
-
-    {{ include('sommet/_delete_form.html.twig') }}
+    {% include 'commons/show-form-action.html.twig' with {
+        'confirm_string': 'Voulez-vous vraiment supprimer ce sommet ?', 
+        'delete_path': 'sommet_delete',
+        'edit_path': 'sommet_edit',
+        'entity_id': sommet.id
+        }
+    %}
 {% endblock %}
