@@ -58,9 +58,8 @@ class SortieAdminType extends AbstractType
             ->add('users', EntityType::class, [
                 'label' => 'Amis',
                 'class' => User::class,
-                'required' => true,
                 'multiple' => true,
-                'expanded' => false,
+                'expanded' => true,
                 'attr' => ['class' => 'selector-multiple'],
                 'help' => 'Vous pouvez ajouter plusieurs personnes pour votre sortie',
                 'help_attr' => ['class' => 'form-helper'],

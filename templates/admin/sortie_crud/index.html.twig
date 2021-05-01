@@ -12,6 +12,7 @@
                 <th>Nom</th>
                 <th>Date_sortie</th>
                 <th>Status</th>
+                <th>Nb d'amis</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -22,6 +23,7 @@
                 <td>{{ sortie.nom }}</td>
                 <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
                 <td>{{ sortie.status == 1 ? 'Programmée' : 'Terminée'  }}</td>
+                <td>{{ (sortie.users | length ) - 1 }}</td>
                 {% include 'commons/table-actions.html.twig' with {
                     'confirm_string': 'Voulez-vous vraiment supprimer cette sortie ?', 
                     'show_path': 'sortie_crud_show',

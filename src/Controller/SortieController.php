@@ -32,6 +32,7 @@ class SortieController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
+            $sortie->addUser($this->getUser());
             $entityManager->persist($sortie);
             $entityManager->flush();
 
@@ -60,6 +61,7 @@ class SortieController extends AbstractController
         //$sortie->addUser($this->getUser());
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $sortie->addUser($this->getUser());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('sortie_index');
@@ -74,7 +76,7 @@ class SortieController extends AbstractController
     #[Route('/{id}', name: 'sortie_delete', methods: ['POST'])]
     public function delete(Request $request, Sortie $sortie): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$sortie->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $sortie->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($sortie);
             $entityManager->flush();

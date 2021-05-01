@@ -58,6 +58,7 @@ class SortieCrudController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $sortie->addUser($this->getUser());
             $this->getDoctrine()->getManager()->flush();
 
             return $this->redirectToRoute('sortie_crud_index');
