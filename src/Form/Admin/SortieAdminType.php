@@ -44,8 +44,8 @@ class SortieAdminType extends AbstractType
                 'expanded' => false,
                 'attr' => ['class' => 'selector'],
                 'choices'  => [
-                    '1' => 'Programée',
-                    '2' => 'Réalisée',
+                    'Programée' => 1,
+                    'Réalisée' => 2,
                 ],
             ])
             ->add('parcours', EntityType::class, [
