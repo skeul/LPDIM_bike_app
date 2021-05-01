@@ -22,7 +22,7 @@
                 <td>
                 {% if user.roles %}
                  {% for role in user.roles  %}
-                  <span class="badge badge-info">{{role}}</span>
+                  <span class="badge badge-info">{{role | slice(5, 5)}}</span>
                  {% endfor %}
                  {% endif %}
                  </td>
@@ -44,7 +44,7 @@
                 <td>
                 {% if user.amis %}
                  {% for ami in user.amis  %}
-                  <span>{{ami.username}},&nbsp;</span>
+                  <a href="{{ path('user_show', { 'id': ami.id}) }}" class="badge badge-secondary">{{ami.username}}<i class="ml-2 fas fa-eye"></i></a>
                  {% endfor %}
                  {% endif %}
                  </td>
