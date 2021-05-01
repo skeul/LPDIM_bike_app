@@ -10,12 +10,14 @@
     <h1>Register</h1>
 
     {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.username) }}
-        {{ form_row(registrationForm.password, {
-            label: 'Password'
-        }) }}
-        {{ form_row(registrationForm.agreeTerms) }}
-
-        <button type="submit" class="btn">Register</button>
+    {{ form_row(registrationForm.nom, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(registrationForm.prenom, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(registrationForm.email, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(registrationForm.username, {'attr': {'class': 'form-control'}}) }}
+    {{ form_row(registrationForm.password, {'attr': {'class': 'form-control'}}, {
+        label: 'Password'
+    }) }}
+    {{ form_row(registrationForm.agreeTerms) }}
+    {{ form_row(registrationForm.Valider, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
     {{ form_end(registrationForm) }}
 {% endblock %}
