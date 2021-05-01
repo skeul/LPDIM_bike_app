@@ -1,0 +1,45 @@
+<nav class="navbar navbar-light px-0">
+    <div class="navbar-nav flex-row">
+     {% set url = app.request.attributes.get('_route')  %}
+
+      {% if 'home' in url  %}
+        <div class="nav-item nav-link mr-2 active" >Dashboard</div>
+      {% else %}
+        <a class="nav-item nav-link mr-2" href="{{ path('home') }}">Dashboard</a>
+      {% endif %}
+
+      {% if 'user' in url  %}
+        <div class="nav-item nav-link mr-2 active" >Utilisateurs</div>
+      {% else %}
+        <a class="nav-item nav-link mr-2" href="{{ path('user_index') }}">Utilisateurs</a>
+      {% endif %}
+      
+      {% if 'velos' in url or 'vtt' in url or 'electric' in url %}
+        <div class="nav-item nav-link mr-2 active" >Vélos</div>
+      {% else %}
+        <a class="nav-item nav-link mr-2" href="{{ path('velos') }}">Vélos</a>
+      {% endif %}
+      
+      {% if 'parcours' in url  %}
+        <div class="nav-item nav-link mr-2 active" >Parcours</div>
+      {% else %}
+        <a class="nav-item nav-link mr-2" href="{{ path('parcours_index') }}">Parcours</a>
+      {% endif %}
+      
+      {% if 'sommet' in url  %}
+        <div class="nav-item nav-link mr-2 active" >Sommets</div>
+      {% else %}
+        <a class="nav-item nav-link mr-2" href="{{ path('sommet_index') }}">Sommets</a>
+      {% endif %}
+      
+      {% if 'sortie' in url  %}
+        <div class="nav-item nav-link mr-2 active" >Sorties</div>
+      {% else %}
+        <a class="nav-item nav-link mr-2" href="{{ path('sortie_index') }}">Sorties</a>
+      {% endif %}
+
+      {% if (is_granted('ROLE_ADMIN'))%}
+        <a class="nav-item nav-link mr-2" href="{{ path('admin_dashboard') }}">Admin</a>
+      {% endif %}
+    </div>
+</nav>

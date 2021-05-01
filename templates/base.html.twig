@@ -20,6 +20,14 @@
                 <span>Bike App</span>
                 </a>
             </div>
+            <div class="nav-container mx-5">
+                {% set url = app.request.attributes.get('_route')  %}
+                {% if 'crud' in url or 'admin' in url %}
+                    {% include 'commons/admin-nav.html.twig' %}
+                {% else %}
+                    {% include 'commons/main-nav.html.twig' %}
+                {% endif %}
+            </div>
             <div class="navbar-actions ml-auto d-flex align-items-center">
             {% if app.user %}
                 <h5 class="my-0 mr-2 h-100">{{ app.user.username }}</h5>
@@ -33,10 +41,6 @@
         </div>
     </nav>
         <div class="d-flex flex-column container my-5 h-100">
-            {% set url = app.request.attributes.get('_route')  %}
-            {% if 'crud' in url or 'admin' in url %}
-                {% include 'commons/admin-nav.html.twig' %}
-            {% endif %}
             {% block body %}
             {% endblock %}
         </div>
