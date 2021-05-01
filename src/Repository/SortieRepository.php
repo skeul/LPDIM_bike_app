@@ -43,6 +43,7 @@ class SortieRepository extends ServiceEntityRepository
             ->leftJoin('s.users', 'u', 'WITH', 'u.id = :user')
             ->setParameter('user', $user)
             ->andWhere('u.id IS NOT NULL')
+            ->andWhere('s.status = 2')
             ->leftJoin('s.parcours', 'p', 'WITH', 'p.id = s.parcours')
             ->groupBy('u.id')
             ->getQuery()

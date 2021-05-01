@@ -27,7 +27,7 @@ class SortieVoter extends Voter
     {
         $user = $token->getUser();
         if (!$user instanceof UserInterface) {
-           return false;
+            return false;
         }
         // you know $subject is a Comment object, thanks to `supports()`
         /** @var Sortie $sortie */
@@ -37,7 +37,6 @@ class SortieVoter extends Voter
         switch ($attribute) {
             case self::VIEW:
                 return $this->canView($sortie, $user);
-
         }
         throw new \LogicException('This code should not be reached!');
     }
@@ -48,6 +47,5 @@ class SortieVoter extends Voter
         if ($sortie->getUsers()->contains($user)) {
             return true;
         }
-
     }
 }

@@ -18,7 +18,6 @@ class SortieController extends AbstractController
     #[Route('/', name: 'sortie_index', methods: ['GET'])]
     public function index(SortieRepository $sortieRepository): Response
     {
-
         return $this->render('sortie/index.html.twig', [
             'sorties' => $sortieRepository->findAll(),
             'distance' => $sortieRepository->getTotalDistanceByUser($this->getUser()),
@@ -52,6 +51,7 @@ class SortieController extends AbstractController
     {
         return $this->render('sortie/show.html.twig', [
             'sortie' => $sortie,
+            'user' => $this->getUser(),
         ]);
     }
 

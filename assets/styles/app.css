@@ -189,3 +189,12 @@ body {
 .pointer{
     cursor : pointer;
 }
+
+.table tbody tr:first-of-type .table-actions {
+    border-top: 0;
+}
+
+.helper-info {
+    font-size: 10px;
+    display: block;
+}

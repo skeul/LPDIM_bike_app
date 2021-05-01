@@ -3,6 +3,8 @@
 {% block title %}Sortie{% endblock %}
 
 {% block body %}
+<a href="{{ path('sortie_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+
     <h1>Sortie</h1>
 
     <table class="table">
@@ -12,23 +14,41 @@
                 <td>{{ sortie.id }}</td>
             </tr>
             <tr>
+                <th>Nom</th>
+                <td>{{ sortie.nom }}</td>
+            </tr>
+            <tr>
                 <th>Date_sortie</th>
-                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
             </tr>
             <tr>
                 <th>Status</th>
-                <td>{{ sortie.status }}</td>
+                <td>{{ sortie.status == 1 ? 'Programmée' : 'Réalisée'  }}</td>
             </tr>
             <tr>
-                <th>Nom</th>
-                <td>{{ sortie.nom }}</td>
+                <th>Parcours</th>
+                <td>{{ sortie.parcours }}</td>
+            </tr>
+            <tr>
+                <th>Amis</th>
+                <td>
+                    {% if sortie.users %}
+                        {% for ami in sortie.users  %}
+                            {% if ami.id != user.id %}
+                                <a href="{{ path('user_show', { 'id': ami.id}) }}" class="badge badge-secondary">{{ami.username}}<i class="ml-2 fas fa-eye"></i></a>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </td>
             </tr>
         </tbody>
     </table>
 
-    <a href="{{ path('sortie_index') }}">back to list</a>
-
-    <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">edit</a>
-
-    {{ include('sortie/_delete_form.html.twig') }}
+    {% include 'commons/show-form-action.html.twig' with {
+        'confirm_string': 'Voulez-vous vraiment supprimer cette sortie ?', 
+        'delete_path': 'sortie_delete',
+        'edit_path': 'sortie_edit',
+        'entity_id': sortie.id
+        }
+    %}
 {% endblock %}

@@ -3,9 +3,9 @@
 {% block title %}New Sortie{% endblock %}
 
 {% block body %}
-    <h1>Create new Sortie</h1>
+<a href="{{ path('sortie_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
 
-    {{ include('sortie/_form.html.twig') }}
+    <h1>Ajouter une sortie</h1>
 
-    <a href="{{ path('sortie_index') }}">back to list</a>
+    {{ include('commons/edit-add-form.html.twig', {'button_label': 'Valider'}) }}
 {% endblock %}

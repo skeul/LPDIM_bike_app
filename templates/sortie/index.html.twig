@@ -3,24 +3,28 @@
 {% block title %}Sortie index{% endblock %}
 
 {% block body %}
-    <h1 class="d-flex">Toutes Mes Sorties
+    <h1 class="d-flex">
+    Toutes Mes Sorties
+            <a class="d-flex align-items-center ml-2 table-title text-secondary" href="{{ path('sortie_new') }}"><i class="fas fa-plus-circle mr-2"></i> Ajouter</a> 
                 {% if distance is empty %}
                 {% else %}
                 <div class="ml-auto">
                     {{distance[0][1]}}&nbsp;kms
+                    <span class="helper-info">
+                    (Sorties réalisées)
                     </div>
                 {% endif %}
+
     </h1>
     <div class="d-flex flex-column">
     <table class="table">
         <thead>
             <tr>
-{#                <th>Id</th>#}
                 <th>Date de la sortie</th>
                 <th>Status</th>
                 <th>Nom</th>
                 <th>Parcours</th>
-                <th>Avec</th>
+                <th>Amis</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -29,37 +33,34 @@
 
             {% if is_granted('view',sortie) %}
             <tr>
-{#                <td>{{ sortie.id }}</td>#}
-                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('H:i:s d-m-y') : '' }}</td>
-                <td>{{ sortie.status }}</td>
+                <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
+                <td>{{ sortie.status == 1 ? 'Programmée' : 'Réalisée'  }}</td>
                 <td>{{ sortie.nom }}</td>
                 <td>{{ sortie.parcours }}</td>
-                <td>
-                    {% for user in sortie.users %}
-                    <p>{{user}}</p>
-                    {% endfor %}
-                </td>
-                <td>
-                    <a href="{{ path('sortie_show', {'id': sortie.id}) }}">show</a>
-                    <a href="{{ path('sortie_edit', {'id': sortie.id}) }}">edit</a>
-                </td>
+                <td>{{ (sortie.users | length ) - 1 }}</td>
+                    {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer cette sortie ?', 
+                    'show_path': 'sortie_show',
+                    'edit_path': 'sortie_edit',
+                    'delete_path': 'sortie_delete',
+                    'entity_id': sortie.id
+                    }
+                %}
             </tr>
             {% endif %}
         {% else %}
             <tr>
-                <td colspan="5">no records found</td>
+                <td colspan="5">Aucune sortie trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('sortie_new') }}">Create new</a>
-
     <div class="d-flex">
-    <div class="w-100 bgcolor-brow-primary rounded  p-2 mr-2  h-100 pointer" onclick="location.href='/parcours'">
+    <div class="w-100 bgcolor-brow-primary rounded  p-2 mr-2  h-100 pointer" onclick="location.href='{{ path('parcours_index') }}'">
         <h2>Gérer les parcours</h2>
     </div>
-    <div class="w-100 bgcolor-red-primary rounded  p-2  h-100 pointer" onclick="location.href='/sommet'">
+    <div class="w-100 bgcolor-red-primary rounded  p-2  h-100 pointer" onclick="location.href='{{ path('sommet_index') }}'">
         <h2>Gérer les sommets</h2>
     </div>
     </div>
