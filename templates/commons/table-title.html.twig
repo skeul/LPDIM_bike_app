@@ -1,5 +1,7 @@
     <h1 class="d-flex">
-    {{title}}
-    <a class="d-flex align-items-center ml-auto table-title text-secondary" href="{{ path(chemin) }}"><i class="fas fa-plus-circle mr-2"></i> Ajouter</a> 
+        {{title}}
+        {% if (is_granted('ROLE_ADMIN'))%}
+            <a class="d-flex align-items-center ml-auto table-title text-secondary" href="{{ path(chemin) }}"><i class="fas fa-plus-circle mr-2"></i> Ajouter</a> 
+        {% endif %}
     </h1>
 
