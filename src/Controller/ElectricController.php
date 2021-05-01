@@ -33,7 +33,7 @@ class ElectricController extends AbstractController
             $entityManager->persist($electric);
             $entityManager->flush();
 
-            return $this->redirectToRoute('electric_index');
+            return $this->redirectToRoute('velos');
         }
 
         return $this->render('electric/new.html.twig', [
@@ -59,7 +59,7 @@ class ElectricController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('electric_index');
+            return $this->redirectToRoute('velos');
         }
 
         return $this->render('electric/edit.html.twig', [
@@ -71,12 +71,12 @@ class ElectricController extends AbstractController
     #[Route('/{id}', name: 'electric_delete', methods: ['POST'])]
     public function delete(Request $request, Electric $electric): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$electric->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $electric->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($electric);
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('electric_index');
+        return $this->redirectToRoute('velos');
     }
 }

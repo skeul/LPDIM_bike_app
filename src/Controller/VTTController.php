@@ -33,7 +33,7 @@ class VTTController extends AbstractController
             $entityManager->persist($vTT);
             $entityManager->flush();
 
-            return $this->redirectToRoute('vtt_index');
+            return $this->redirectToRoute('velos');
         }
 
         return $this->render('vtt/new.html.twig', [
@@ -59,7 +59,7 @@ class VTTController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('vtt_index');
+            return $this->redirectToRoute('velos');
         }
 
         return $this->render('vtt/edit.html.twig', [
@@ -77,6 +77,6 @@ class VTTController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('vtt_index');
+        return $this->redirectToRoute('velos');
     }
 }
