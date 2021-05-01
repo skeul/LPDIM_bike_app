@@ -3,15 +3,14 @@
 {% block title %}Parcours index{% endblock %}
 
 {% block body %}
-    <h1>Tout les Parcours</h1>
+    {% include 'commons/table-title.html.twig' with {'title': 'Tous les parcours', 'chemin': 'parcours_new'} %}
 
     <table class="table">
         <thead>
             <tr>
-{#                <th>Id</th>#}
                 <th>Distance</th>
-                <th>Difficulty</th>
-                <th>Name</th>
+                <th>Difficulté</th>
+                <th>Nom</th>
                 <th>Passe par les sommets</th>
                 <th>actions</th>
             </tr>
@@ -19,7 +18,6 @@
         <tbody>
         {% for parcour in parcours %}
             <tr>
-{#                <td>{{ parcour.id }}</td>#}
                 <td>{{ parcour.distance }}Km</td>
                 <td>{{ parcour.difficulte }}/10</td>
                 <td>{{ parcour.name }}</td>
@@ -28,10 +26,14 @@
                     <p>{{sommet.nom}}({{sommet.altitude}}m)</p>
                     {% endfor %}
                 </td>
-                <td>
-                    <a href="{{ path('parcours_show', {'id': parcour.id}) }}">show</a>
-                    <a href="{{ path('parcours_edit', {'id': parcour.id}) }}">edit</a>
-                </td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce parcours ?', 
+                    'show_path': 'parcours_show',
+                    'edit_path': 'parcours_edit',
+                    'delete_path': 'parcours_delete',
+                    'entity_id': parcour.id
+                    }
+                %}
             </tr>
         {% else %}
             <tr>
@@ -41,5 +43,4 @@
         </tbody>
     </table>
 
-    <a href="{{ path('parcours_new') }}">Create new</a>
 {% endblock %}
