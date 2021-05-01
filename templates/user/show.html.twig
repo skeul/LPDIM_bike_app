@@ -3,7 +3,9 @@
 {% block title %}User{% endblock %}
 
 {% block body %}
-    <h1>User</h1>
+<a href="{{ path('user_index') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
+
+ <h1>Utilisateur : {{ user.username }}</h1>
 
     <table class="table">
         <tbody>
@@ -17,8 +19,14 @@
             </tr>
             <tr>
                 <th>Roles</th>
-                <td>{{ user.roles ? user.roles|json_encode : '' }}</td>
-            </tr>
+                <td>
+                {% if user.roles %}
+                 {% for role in user.roles  %}
+                  <span class="badge badge-info">{{role}}</span>
+                 {% endfor %}
+                 {% endif %}
+                 </td>
+                 </tr>
             <tr>
                 <th>Nom</th>
                 <td>{{ user.nom }}</td>
@@ -31,14 +39,21 @@
                 <th>Email</th>
                 <td>{{ user.email }}</td>
             </tr>
-            {% for ami in user.amis %}
-            {{ami.nom}}
-            {% endfor %}
+            <tr>
+                <th>Amis</th>
+                <td>
+                {% if user.amis %}
+                 {% for ami in user.amis  %}
+                  <span>{{ami.username}},&nbsp;</span>
+                 {% endfor %}
+                 {% endif %}
+                 </td>
+            </tr>
         </tbody>
     </table>
-
-    <a href="{{ path('user_index') }}">back to list</a>
-
-    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
-
+    <div class="d-flex align-items-center">
+        {% if (is_granted('ROLE_ADMIN'))%}
+            <a class="btn btn-outline-primary" href="{{ path('user_crud_edit', { 'id': user.id}) }}">Modifier</a> 
+        {% endif %}
+    </div>
 {% endblock %}
