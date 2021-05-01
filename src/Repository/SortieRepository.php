@@ -19,22 +19,24 @@ class SortieRepository extends ServiceEntityRepository
         parent::__construct($registry, Sortie::class);
     }
 
-    // /**
-    //  * @return Sortie[] Returns an array of Sortie objects
-    //  */
-    /*
-    public function findByExampleField($value)
+     /**
+      * @return Sortie[] Returns an array of Sortie objects
+      */
+
+    public function findTopParcours($user)
     {
-        return $this->createQueryBuilder('s')
-            ->andWhere('s.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('s.id', 'ASC')
-            ->setMaxResults(10)
+        return $this->createQueryBuilder('s')->select('p.name','COUNT(p.id) AS nbfois')
+            ->setParameter('user', $user)
+            ->innerJoin('s.users', 'u', 'WITH', 'u.id = :user')
+            ->innerJoin('s.parcours', 'p', 'WITH', 'p.id = s.parcours')
+            ->groupBy('p.id')
+            ->orderBy('nbfois', 'DESC')
+            //->setMaxResults(5)
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
+
     }
-    */
+
 
     public function getTotalDistanceByUser($user)
     {

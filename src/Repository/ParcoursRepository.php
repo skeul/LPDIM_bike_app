@@ -19,22 +19,23 @@ class ParcoursRepository extends ServiceEntityRepository
         parent::__construct($registry, Parcours::class);
     }
 
-    // /**
-    //  * @return Parcours[] Returns an array of Parcours objects
-    //  */
-    /*
-    public function findByExampleField($value)
-    {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
+    /**
+      * @return Parcours[] Returns an array of Parcours objects
+     */
+
+    //public function findTopParcours()
+    //{
+
+
+        //return $this->createQueryBuilder()
+
+           //->orderBy('p.id', 'ASC')
+            //->setMaxResults(5)
+           // ->getQuery()
+          //  ->getResult()
+        //;
+    //}
+
 
     /*
     public function findOneBySomeField($value): ?Parcours
