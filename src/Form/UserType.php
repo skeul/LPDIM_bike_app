@@ -25,16 +25,6 @@ class UserType extends AbstractType
                 'required' => true,
                 'constraints' => [new Length(['min' => 3])],
             ])
-            ->add('Roles', ChoiceType::class, [
-                'required' => true,
-                'multiple' => false,
-                'expanded' => false,
-                'choices'  => [
-                    'User' => 'ROLE_USER',
-                    'Admin' => 'ROLE_ADMIN',
-                    'No Role' => null,
-                ],
-            ])
             ->add('password', PasswordType::class, [
                 'mapped' => false,
                 'constraints' => [
@@ -63,20 +53,6 @@ class UserType extends AbstractType
                     'placeholder' => 'toto@titi.com',
                 )
             ]);
-
-
-        // Data transformer
-        $builder->get('Roles')
-            ->addModelTransformer(new CallbackTransformer(
-                function ($rolesArray) {
-                    // transform the array to a string
-                    return count($rolesArray) ? $rolesArray[0] : null;
-                },
-                function ($rolesString) {
-                    // transform the string back to an array
-                    return [$rolesString];
-                }
-            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

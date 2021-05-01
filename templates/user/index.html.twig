@@ -36,7 +36,11 @@
                 <td>{{ user.amis|length }}
                 <td>
                     <a href="{{ path('user_show', {'id': user.id}) }}">show</a>
-                    <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    {% if (is_granted('ROLE_ADMIN'))%}
+                        <a href="{{ path('user_crud_edit', {'id': user.id}) }}">edit</a>
+                    {% elseif (is_granted('edit_user', user)) %}
+                        <a href="{{ path('user_edit', {'id': user.id}) }}">edit</a>
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -46,6 +50,7 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('user_new') }}">Create new</a>
+    {% if ((is_granted('ROLE_ADMIN')))%}
+        <a href="{{ path('user_crud_new') }}">Create new</a>
+    {% endif %}
 {% endblock %}
