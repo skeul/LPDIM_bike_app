@@ -71,7 +71,7 @@ body {
     display: block;
     border: 0;
     height: 30px;
-    min-width: 200px;
+    min-width: 250px;
     margin-bottom: 15px;
 }
 
@@ -79,7 +79,7 @@ body {
     display: block;
     border: 0;
     height: auto;
-    min-width: 200px;
+    min-width: 250px;
     margin-bottom: 15px;
 }
 

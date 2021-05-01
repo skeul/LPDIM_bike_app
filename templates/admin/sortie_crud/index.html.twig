@@ -9,6 +9,7 @@
         <thead>
             <tr>
                 <th>Id</th>
+                <th>Nom</th>
                 <th>Date_sortie</th>
                 <th>Status</th>
                 <th>actions</th>
@@ -18,6 +19,7 @@
         {% for sortie in sorties %}
             <tr>
                 <td>{{ sortie.id }}</td>
+                <td>{{ sortie.nom }}</td>
                 <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
                 <td>{{ sortie.status == 1 ? 'Programmée' : 'Terminée'  }}</td>
                 {% include 'commons/table-actions.html.twig' with {

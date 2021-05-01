@@ -14,6 +14,10 @@
                 <td>{{ sortie.id }}</td>
             </tr>
             <tr>
+                <th>Nom</th>
+                <td>{{ sortie.nom }}</td>
+            </tr>
+            <tr>
                 <th>Date_sortie</th>
                 <td>{{ sortie.dateSortie ? sortie.dateSortie|date('d/m/Y à H:i') : '' }}</td>
             </tr>
