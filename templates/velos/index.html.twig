@@ -20,6 +20,7 @@
         </thead>
         <tbody>
         {% for vtt in vtts %}
+            {% if is_granted('view',vtt) %}
             <tr>
                 {#                <td>{{ velo.id }}</td>#}
                 <td>{{ vtt.marque }}</td>
@@ -33,6 +34,7 @@
                     <a href="{{ path('vtt_edit', {'id': vtt.id}) }}">edit</a>
                 </td>
             </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
@@ -59,6 +61,7 @@
         </thead>
         <tbody>
         {% for electric in electrics %}
+            {% if is_granted('view',electric) %}
             <tr>
                 {#                <td>{{ velo.id }}</td>#}
                 <td>{{ electric.marque }}</td>
@@ -72,6 +75,7 @@
                     <a href="{{ path('electric_edit', {'id': electric.id}) }}">edit</a>
                 </td>
             </tr>
+            {% endif %}
         {% else %}
             <tr>
                 <td colspan="6">no records found</td>
