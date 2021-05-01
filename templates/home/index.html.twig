@@ -46,18 +46,19 @@
             {% endif %}
         </div>
         <div class="w-25">
-            <div class="bgcolor-white rounded p-2 ml-2 mb-2">
-                <h2>Mes kilomètres</h2>
-                {% if distance is empty %}
-                    <div>Aucune sortie réalisée</div>
-                {% else %}
-                    <div>{{distance[0][1]}}&nbsp;kms</div>
-                {% endif %}
+            <div class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-content-between h-100">
+                <div class="bgcolor-white rounded p-2 ml-2 mb-2 h-25">
+                    <h2>Mes kilomètres</h2>
+                    {% if distance is empty %}
+                        <div>Aucune sortie réalisée</div>
+                    {% else %}
+                        <div>{{distance[0][1]}}&nbsp;kms</div>
+                    {% endif %}
+                </div>
+                <div class="bgcolor-red-primary rounded p-2 h-75 ml-2 ">
+                    <h2>Top Parcours</h2>
+                </div>
             </div>
-            <div class="bgcolor-red-primary rounded p-2 h-100 ml-2 h-100">
-                <h2>Top Parcours</h2>
-            </div>
-
         </div>
     </div>
 {% endblock %}
