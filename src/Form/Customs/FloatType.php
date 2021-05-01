@@ -3,15 +3,16 @@
 namespace App\Form\Customs;
 
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
+use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 
 class FloatType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'scale' => 3,
+            'scale' => 2,
             'attr'  => [
                 'min' => 0,
                 'step' => 0.05,
@@ -24,6 +25,6 @@ class FloatType extends AbstractType
 
     public function getParent()
     {
-        return IntegerType::class;
+        return NumberType::class;
     }
 }
