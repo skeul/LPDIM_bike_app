@@ -88,6 +88,10 @@ body {
     margin-top: -10px;
 }
 
+.selector-checkbox input{
+    display: block;
+}
+
 .color-green-primary{
     color :#558b2f;
 }
@@ -173,6 +177,10 @@ body {
 }
 .bgcolor-red-dark{
     background-color: #9f0000;
+}
+
+.color-white {
+    color: #fff;
 }
 
 .pointer{

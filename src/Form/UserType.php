@@ -5,6 +5,7 @@ namespace App\Form;
 use App\Entity\User;
 use Doctrine\ORM\EntityRepository;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\CallbackTransformer;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Validator\Constraints\Length;
@@ -61,11 +62,21 @@ class UserType extends AbstractType
                 'attr' => array(
                     'placeholder' => 'toto@titi.com',
                 )
-            ])
-            ->add('amis', EntityType::class, [
-                'class' => User::class,
-                'choice_label' => 'username',
             ]);
+
+
+        // Data transformer
+        $builder->get('Roles')
+            ->addModelTransformer(new CallbackTransformer(
+                function ($rolesArray) {
+                    // transform the array to a string
+                    return count($rolesArray) ? $rolesArray[0] : null;
+                },
+                function ($rolesString) {
+                    // transform the string back to an array
+                    return [$rolesString];
+                }
+            ));
     }
 
     public function configureOptions(OptionsResolver $resolver)

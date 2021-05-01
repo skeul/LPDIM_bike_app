@@ -1,0 +1,9 @@
+<div class="admin-forms">
+{{ form_start(form) }}
+    <div class="my-custom-class-for-errors">
+        {{ form_errors(form) }}
+    </div>
+    {{ form_widget(form) }}
+    <button class="btn btn-outline-primary my-2 d-flex">{{ button_label|default('Sauvegarder') }}</button>
+{{ form_end(form) }}
+</div>

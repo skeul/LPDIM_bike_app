@@ -14,17 +14,32 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Security\Core\Security;
 
 class FriendType extends AbstractType
 {
+    private $user;
+    public function __construct(Security $security)
+    {
+        $this->security = $security;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+        $this->user = $this->security->getUser();
         $builder
             ->add('amis', EntityType::class, [
+                'label' => 'Amis',
                 'class' => User::class,
-                'choice_label' => 'username',
                 'multiple' => true,
-                'expanded'      => false,
+                'expanded' => false,
+                'attr' => ['class' => 'selector-multiple'],
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')
+                        ->andWhere('u.id != :uid')
+                        ->setParameter('uid', $this->user->getId())
+                        ->orderBy('u.username', 'ASC');
+                },
             ]);
     }
 
