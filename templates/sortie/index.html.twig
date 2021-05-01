@@ -3,8 +3,14 @@
 {% block title %}Sortie index{% endblock %}
 
 {% block body %}
-    <h1>Toutes Mes Sorties</h1>
-
+    <h1 class="d-flex">Toutes Mes Sorties
+                {% if distance is empty %}
+                {% else %}
+                <div class="ml-auto">
+                    {{distance[0][1]}}&nbsp;kms
+                    </div>
+                {% endif %}
+    </h1>
     <div class="d-flex flex-column">
     <table class="table">
         <thead>

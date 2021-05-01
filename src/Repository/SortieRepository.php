@@ -36,6 +36,19 @@ class SortieRepository extends ServiceEntityRepository
     }
     */
 
+    public function getTotalDistanceByUser($user)
+    {
+        return $this->createQueryBuilder('s')
+            ->select('sum(p.distance)')
+            ->leftJoin('s.users', 'u', 'WITH', 'u.id = :user')
+            ->setParameter('user', $user)
+            ->andWhere('u.id IS NOT NULL')
+            ->leftJoin('s.parcours', 'p', 'WITH', 'p.id = s.parcours')
+            ->groupBy('u.id')
+            ->getQuery()
+            ->getResult();
+    }
+
     /*
     public function findOneBySomeField($value): ?Sortie
     {

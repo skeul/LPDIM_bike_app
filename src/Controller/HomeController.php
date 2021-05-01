@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Entity\Sortie;
@@ -15,7 +16,6 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(SortieRepository $sortieRepository): Response
     {
-
         $user = $this->getUser();
         $currentUserName = isset($user) ? $this->getUser()->getUsername() : "Anonyme";
 
@@ -23,6 +23,7 @@ class HomeController extends AbstractController
             'controller_name' => 'HomeController',
             'user' => $user,
             'sorties' => $sortieRepository->findAll(),
+            'distance' => $sortieRepository->getTotalDistanceByUser($this->getUser()),
             //'sorties' => $sortieRepository->findby(array('date_sortie' => 'DESC')),
         ]);
     }
