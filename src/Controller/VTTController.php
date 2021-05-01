@@ -23,6 +23,7 @@ class VTTController extends AbstractController
     public function new(Request $request): Response
     {
         $vTT = new VTT();
+        $vTT->setUser($this->getUser());
         $form = $this->createForm(VTTType::class, $vTT);
         $form->handleRequest($request);
 
@@ -53,6 +54,8 @@ class VTTController extends AbstractController
     {
         $form = $this->createForm(VTTType::class, $vTT);
         $form->handleRequest($request);
+        $vTT->setUser($this->getUser());
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
