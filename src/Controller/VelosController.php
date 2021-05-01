@@ -23,8 +23,8 @@ class VelosController extends AbstractController
     {
         return $this->render('velos/index.html.twig', [
             'controller_name' => 'VelosController',
-            'vtts' => $vTTRepository->findAll(),
-            'electrics' => $electricRepository->findAll(),
+            //'vtts' => $vTTRepository->findAll(),
+            //'electrics' => $electricRepository->findAll(),
             'velos' => $veloRepository->findAll(),
         ]);
     }

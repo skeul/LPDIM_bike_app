@@ -23,6 +23,8 @@ class ElectricController extends AbstractController
     public function new(Request $request): Response
     {
         $electric = new Electric();
+        $electric->setUser($this->getUser());
+
         $form = $this->createForm(ElectricType::class, $electric);
         $form->handleRequest($request);
 
@@ -53,6 +55,8 @@ class ElectricController extends AbstractController
     {
         $form = $this->createForm(ElectricType::class, $electric);
         $form->handleRequest($request);
+        $electric->setUser($this->getUser());
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();

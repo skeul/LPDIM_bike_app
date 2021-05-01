@@ -57,6 +57,12 @@
                 </div>
                 <div class="bgcolor-red-primary rounded p-2 h-75 ml-2 ">
                     <h2>Top Parcours</h2>
+                    {% for parcour in topparcours %}
+                        <div class="d-flex">
+                            <h5 class="color-white mr-2">{{parcour.name}}</h5>
+                            <h5 class="color-white mr-2">({{parcour.nbfois}}x)</h5>
+                        </div>
+                    {% endfor %}
                 </div>
             </div>
         </div>
