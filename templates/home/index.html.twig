@@ -10,13 +10,14 @@
     <div class="d-flex h-100">
         <div class="w-75">
             {% if user is  null %}
-                <p>Pour profiter pleinement des fonctionnalitées de notre application, Inscrivez ou connectez-vous ! </p>
+                <p>Pour profiter pleinement des fonctionnalitées de notre application, 
+                <a href="{{ path('app_register') }}">Inscrivez</a> ou <a href="{{ path('app_login') }}">Connectez-vous</a> ! </p>
             {% else %}
                 <div class="d-flex flex-column flex-grow-1 flex-shrink-1 justify-content-between h-100">
-                    <div class="w-100 bgcolor-green-primary rounded p-2  mb-2 h-100 pointer" onclick="location.href='/velos'">
+                    <div class="w-100 bgcolor-green-primary rounded p-2  mb-2 h-100 pointer" onclick="location.href='{{ path('velos') }}'">
                         <h2>Mes Velos</h2>
                     </div>
-                    <div class="w-100 bgcolor-brow-primary rounded  p-2  h-100 pointer" onclick="location.href='/sortie'">
+                    <div class="w-100 bgcolor-brow-primary rounded  p-2  h-100 pointer" onclick="location.href='{{ path('sortie_index') }}'">
                        <h2>Mes Dernières Sorties</h2>
                         {% for sortie in sorties %}
 
@@ -29,7 +30,7 @@
                         {% endif %}
                         {% endfor %}
                     </div>
-                    <div class="w-100 bgcolor-blue-primary rounded  p-2 mt-2 h-100 pointer" onclick="location.href='/user'">
+                    <div class="w-100 bgcolor-blue-primary rounded  p-2 mt-2 h-100 pointer" onclick="location.href='{{ path('user_index') }}'">
                         <h2>Mes Amis</h2>
                         {% for ami in user.amis %}
                             <div class="d-flex">
