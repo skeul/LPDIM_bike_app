@@ -49,6 +49,13 @@ class SortieController extends AbstractController
     #[Route('/{id}', name: 'sortie_show', methods: ['GET'])]
     public function show(Sortie $sortie): Response
     {
+        $userArray = [];
+        foreach ($sortie->getUsers() as $u) {
+            $userArray[] = $u->getId();
+        }
+        if (!in_array($this->getUser()->getId(), $userArray)) {
+            $this->denyAccessUnlessGranted("edit_user", $u);
+        }
         return $this->render('sortie/show.html.twig', [
             'sortie' => $sortie,
             'user' => $this->getUser(),
