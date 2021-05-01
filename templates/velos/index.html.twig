@@ -25,6 +25,7 @@
         </thead>
         <tbody>
         {% for velo in velos %}
+            {% if is_granted('viewvelo',velo) %}
             <tr>
                 <td>{{ velo.id }}</td>
                 <td>
@@ -47,7 +48,7 @@
                     }
                 %}
             </tr>
-                       
+            {% endif %}
 
         {% else %}
             <tr>

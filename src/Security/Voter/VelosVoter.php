@@ -9,8 +9,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 class VelosVoter extends Voter
 {
     // these strings are just invented: you can use anything
-    const VIEWVTT = 'viewVTT';
-    const VIEWELECTRIC = 'viewElectric';
+    const VIEW = 'viewvelo';
 
 
     protected function supports($attribute, $subject)
@@ -18,8 +17,8 @@ class VelosVoter extends Voter
         // replace with your own logic
         // https://symfony.com/doc/current/security/voters.html
 
-        return in_array($attribute, [SELF::VIEWVTT])
-            && $subject instanceof \App\Entity\VTT;
+        return in_array($attribute, [SELF::VIEW]);
+            //&& $subject instanceof \App\Entity\Velo;
     }
 
     protected function voteOnAttribute($attribute, $subject, TokenInterface $token)
@@ -34,29 +33,19 @@ class VelosVoter extends Voter
 
 
         switch ($attribute) {
-            case self::VIEWVTT:
-                return $this->canViewElectic($velo, $user);
-            case self::VIEWELECTRIC:
-                return $this->canViewVTT($velo, $user);
-
+            case self::VIEW:
+                return $this->canView($velo, $user);
         }
         throw new \LogicException('This code should not be reached!');
     }
 
-    private function canViewElectic(Electric $velo, User $user)
+    private function canView( $velo, $user)
     {
         // if they can edit, they can view
-        if ($velo->getUsers()->contains($user)) {
+        if ($velo->getUser() == $user) {
             return true;
         }
 
     }
-    private function canViewVTT(VTT $velo, User $user)
-    {
-        // if they can edit, they can view
-        if ($velo->getUsers()->contains($user)) {
-            return true;
-        }
 
-    }
 }
