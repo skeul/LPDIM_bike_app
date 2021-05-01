@@ -16,9 +16,7 @@ class ElectricController extends AbstractController
     #[Route('/', name: 'electric_index', methods: ['GET'])]
     public function index(ElectricRepository $electricRepository): Response
     {
-        return $this->render('electric/index.html.twig', [
-            'electrics' => $electricRepository->findAll(),
-        ]);
+        return $this->redirectToRoute('velos');
     }
 
     #[Route('/new', name: 'electric_new', methods: ['GET', 'POST'])]

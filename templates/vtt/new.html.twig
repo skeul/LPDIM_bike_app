@@ -1,11 +1,11 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New VTT{% endblock %}
+{% block title %}Ajouter un VTT{% endblock %}
 
 {% block body %}
-    <h1>Create new VTT</h1>
+<a href="{{ path('velos') }}" class="link"><i class="fas fa-arrow-left mr-2"></i>Retour</a>
 
-    {{ include('vtt/_form.html.twig') }}
+    <h1>Ajouter un VTT</h1>
 
-    <a href="{{ path('vtt_index') }}">back to list</a>
+    {{ include('commons/admin-edit-add-form.html.twig', {'button_label': 'Valider'}) }}
 {% endblock %}

@@ -16,9 +16,7 @@ class VTTController extends AbstractController
     #[Route('/', name: 'vtt_index', methods: ['GET'])]
     public function index(VTTRepository $vTTRepository): Response
     {
-        return $this->render('vtt/index.html.twig', [
-            'vtts' => $vTTRepository->findAll(),
-        ]);
+        return $this->redirectToRoute('velos');
     }
 
     #[Route('/new', name: 'vtt_new', methods: ['GET', 'POST'])]

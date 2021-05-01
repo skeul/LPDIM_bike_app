@@ -1,88 +1,60 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Mes Velos{% endblock %}
+{% block title %}Mes vélos{% endblock %}
 
 {% block body %}
-    <h1>Mes VTT</h1>
+    <h1 class="d-flex">
+    Vélos
+    <span class="d-flex align-items-center ml-auto">
+    <a class="d-flex align-items-center ml-auto table-title text-secondary mr-2" href="{{ path('vtt_new') }}"><i class="fas fa-plus-circle mr-2"></i> Ajouter VTT</a>
+    <a class="d-flex align-items-center ml-auto table-title text-secondary" href="{{ path('electric_new') }}"><i class="fas fa-plus-circle mr-2"></i> Ajouter électrique</a> 
+    </span>
+    </h1>
 
     <table class="table">
         <thead>
-        <tr>
-            {#                <th>Id</th>#}
-            <th>Marque</th>
-            <th>Modèle</th>
-            <th>Poids</th>
-            <th>Image</th>
-            <th>Suspension Avant</th>
-            <th>Suspension Arrière</th>
-            <th>actions</th>
-        </tr>
+            <tr>
+                <th>Id</th>
+                <th>Image</th>
+                <th>Type</th>
+                <th>Marque</th>
+                <th>Modele</th>
+                <th>Poids</th>
+                <th>Actions</th>
+            </tr>
         </thead>
         <tbody>
-        {% for vtt in vtts %}
-            {% if is_granted('view',vtt) %}
+        {% for velo in velos %}
             <tr>
-                {#                <td>{{ velo.id }}</td>#}
-                <td>{{ vtt.marque }}</td>
-                <td>{{ vtt.modele }}</td>
-                <td>{{ vtt.poids }} KG</td>
-                <td>{{ vtt.image }}</td>
-                <td>{{vtt.suspensionAvant}}</td>
-                <td>{{vtt.suspensionArriere}}</td>
+                <td>{{ velo.id }}</td>
                 <td>
-                    <a href="{{ path('vtt_show', {'id': vtt.id}) }}">show</a>
-                    <a href="{{ path('vtt_edit', {'id': vtt.id}) }}">edit</a>
+                    {% if velo.image %}
+                        <img src="{{velo.image}}" title="Mon velo" alt="image_velo" class="table-image">
+                    {% else %}
+                        <img src="{{asset('build/images/logo.svg')}}" title="Mon velo" alt="image_velo" class="table-image">
+                    {% endif %}
                 </td>
+                <td>{{velo.getClass(velo)}}</td>
+                <td>{{ velo.marque }}</td>
+                <td>{{ velo.modele }}</td>
+                <td>{{ velo.poids }}</td>
+                {% include 'commons/table-actions.html.twig' with {
+                    'confirm_string': 'Voulez-vous vraiment supprimer ce vélo?', 
+                    'show_path': velo.getClass(velo) | lower ~'_show',
+                    'edit_path': velo.getClass(velo) | lower ~'_edit',
+                    'delete_path': velo.getClass(velo) | lower ~'_delete',
+                    'entity_id': velo.id
+                    }
+                %}
             </tr>
-            {% endif %}
+                       
+
         {% else %}
             <tr>
-                <td colspan="6">no records found</td>
+                <td colspan="6">Aucun vélo trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 
-    <a href="{{ path('vtt_new') }}">Create new</a>
-    <h1>Mes Velos Electriques</h1>
-
-    <table class="table">
-        <thead>
-        <tr>
-            {#                <th>Id</th>#}
-            <th>Marque</th>
-            <th>Modèle</th>
-            <th>Poids</th>
-            <th>Image</th>
-            <td>Puissance</td>
-            <td>Autonomie</td>
-            <th>actions</th>
-        </tr>
-        </thead>
-        <tbody>
-        {% for electric in electrics %}
-            {% if is_granted('view',electric) %}
-            <tr>
-                {#                <td>{{ velo.id }}</td>#}
-                <td>{{ electric.marque }}</td>
-                <td>{{ electric.modele }}</td>
-                <td>{{ electric.poids }} KG</td>
-                <td>{{ electric.image }}</td>
-                <td>{{electric.puissance}} KW</td>
-                <td>{{electric.autonomie}} KM</td>
-                <td>
-                    <a href="{{ path('electric_show', {'id': electric.id}) }}">show</a>
-                    <a href="{{ path('electric_edit', {'id': electric.id}) }}">edit</a>
-                </td>
-            </tr>
-            {% endif %}
-        {% else %}
-            <tr>
-                <td colspan="6">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('electric_new') }}">Create new</a>
 {% endblock %}
