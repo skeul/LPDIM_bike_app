@@ -24,7 +24,7 @@ class AdminDashboardController extends AbstractController
         SommetRepository $sommetRepository,
         SortieRepository $sortieRepository,
         VTTRepository $vTTRepository,
-        VeloRepository $veloRepository,
+        VeloRepository $veloRepository
     ): Response {
 
         return $this->render('admin/dashboard/index.html.twig', [
